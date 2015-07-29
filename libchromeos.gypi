@@ -14,7 +14,6 @@
       'target_name': 'libchromeos-<(libbase_ver)',
       'type': 'none',
       'dependencies': [
-        'libchromeos-bootstat-<(libbase_ver)',
         'libchromeos-core-<(libbase_ver)',
         'libchromeos-cryptohome-<(libbase_ver)',
         'libchromeos-http-<(libbase_ver)',
@@ -75,6 +74,7 @@
         'chromeos/mime_utils.cc',
         'chromeos/osrelease_reader.cc',
         'chromeos/process.cc',
+        'chromeos/process_reaper.cc',
         'chromeos/process_information.cc',
         'chromeos/secure_blob.cc',
         'chromeos/strings/string_utils.cc',
@@ -197,8 +197,10 @@
       'target_name': 'libchromeos-ui-<(libbase_ver)',
       'type': 'shared_library',
       'dependencies': [
-        'libchromeos-bootstat-<(libbase_ver)',
         'libchromeos-core-<(libbase_ver)',
+      ],
+      'libraries': [
+        '-lbootstat',
       ],
       'cflags': [
         '-fvisibility=default',
@@ -272,19 +274,6 @@
       ],
       'includes': ['../common-mk/deps.gypi'],
     },
-    {
-      'target_name': 'libchromeos-bootstat-<(libbase_ver)',
-      'type': 'shared_library',
-      'sources': [
-        'chromeos/bootstat/bootstat_log.c',
-      ],
-      'cflags': [
-        '-fvisibility=default',
-      ],
-      'libraries': [
-        '-lrootdev',
-      ],
-    },
   ],
   'conditions': [
     ['USE_test == 1', {
@@ -356,7 +345,8 @@
             'chromeos/message_loops/message_loop_unittest.cc',
             'chromeos/mime_utils_unittest.cc',
             'chromeos/osrelease_reader_unittest.cc',
-            'chromeos/process_test.cc',
+            'chromeos/process_reaper_unittest.cc',
+            'chromeos/process_unittest.cc',
             'chromeos/secure_blob_unittest.cc',
             'chromeos/streams/fake_stream_unittest.cc',
             'chromeos/streams/file_stream_unittest.cc',
@@ -383,19 +373,6 @@
           'sources': [
             'chromeos/policy/tests/libpolicy_unittest.cc',
           ]
-        },
-        {
-          'target_name': 'libbootstat_unittests',
-          'type': 'executable',
-          'dependencies': [
-            'libchromeos-bootstat-<(libbase_ver)',
-          ],
-          'includes': [
-            '../common-mk/common_test.gypi',
-          ],
-          'sources': [
-            'chromeos/bootstat/log_unit_tests.cc',
-          ],
         },
       ],
     }],

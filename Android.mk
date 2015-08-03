@@ -36,6 +36,20 @@ libchromeos_core_sources := \
     chromeos/type_name_undecorate.cc \
     chromeos/url_utils.cc
 
+libchromeos_dbus_sources := \
+    chromeos/any.cc \
+    chromeos/daemons/dbus_daemon.cc \
+    chromeos/dbus/async_event_sequencer.cc \
+    chromeos/dbus/data_serialization.cc \
+    chromeos/dbus/dbus_method_invoker.cc \
+    chromeos/dbus/dbus_method_response.cc \
+    chromeos/dbus/dbus_object.cc \
+    chromeos/dbus/dbus_service_watcher.cc \
+    chromeos/dbus/dbus_signal.cc \
+    chromeos/dbus/exported_object_manager.cc \
+    chromeos/dbus/exported_property_set.cc \
+    chromeos/dbus/utils.cc
+
 libchromeos_http_sources := \
     chromeos/http/curl_api.cc \
     chromeos/http/http_connection_curl.cc \
@@ -108,6 +122,22 @@ LOCAL_SRC_FILES := $(libchromeos_core_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
+LOCAL_CFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_CLANG := true
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_SHARED_LIBRARY)
+
+# Shared dbus library for target
+# ========================================================
+include $(CLEAR_VARS)
+LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
+LOCAL_MODULE := libchromeos-dbus
+LOCAL_SRC_FILES := $(libchromeos_dbus_sources)
+LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
+    libchrome-dbus libdbus
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti

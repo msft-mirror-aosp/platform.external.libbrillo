@@ -147,25 +147,24 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
 
-# Shared host library for target
+# Shared minijail library for target
 # ========================================================
-ifeq ($(HOST_OS),linux)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-host
-LOCAL_SRC_FILES := $(libchromeos_core_sources)
+LOCAL_MODULE := libchromeos-minijail
+LOCAL_SRC_FILES := chromeos/minijail/minijail.cc \
+
 LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := libchrome-host
-LOCAL_STATIC_LIBRARIES := libmodpb64-host
+LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
+    libminijail
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
-include $(BUILD_HOST_SHARED_LIBRARY)
-endif
+include $(BUILD_SHARED_LIBRARY)
 
-# Shared library for target stream
+# Shared stream library for target
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
@@ -181,7 +180,7 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
 
-# Shared library for target http
+# Shared http library for target
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
@@ -213,7 +212,7 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_STATIC_LIBRARY)
 
-# Static library for target test-helpers
+# Static test-helpers library for target
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
@@ -229,6 +228,24 @@ LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_STATIC_LIBRARY)
+
+# Shared library for host
+# ========================================================
+ifeq ($(HOST_OS),linux)
+include $(CLEAR_VARS)
+LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
+LOCAL_MODULE := libchromeos-host
+LOCAL_SRC_FILES := $(libchromeos_core_sources)
+LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_SHARED_LIBRARIES := libchrome-host
+LOCAL_STATIC_LIBRARIES := libmodpb64-host
+LOCAL_CFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_CLANG := true
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_HOST_SHARED_LIBRARY)
+endif
 
 # Unit tests.
 # ========================================================

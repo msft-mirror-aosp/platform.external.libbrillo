@@ -70,6 +70,12 @@ libchromeos_stream_sources := \
     chromeos/streams/stream_utils.cc \
     chromeos/streams/tls_stream.cc
 
+libchromeos_test_helpers_sources := \
+    chromeos/http/http_connection_fake.cc \
+    chromeos/http/http_transport_fake.cc \
+    chromeos/message_loops/fake_message_loop.cc \
+    chromeos/streams/fake_stream.cc \
+
 libchromeos_test_sources := \
     chromeos/asynchronous_signal_handler_unittest.cc \
     chromeos/backoff_entry_unittest.cc \
@@ -79,20 +85,16 @@ libchromeos_test_sources := \
     chromeos/file_utils_unittest.cc \
     chromeos/flag_helper_unittest.cc \
     chromeos/http/http_connection_curl_unittest.cc \
-    chromeos/http/http_connection_fake.cc \
     chromeos/http/http_form_data_unittest.cc \
     chromeos/http/http_request_unittest.cc \
     chromeos/http/http_transport_curl_unittest.cc \
-    chromeos/http/http_transport_fake.cc \
     chromeos/http/http_utils_unittest.cc \
     chromeos/key_value_store_unittest.cc \
     chromeos/map_utils_unittest.cc \
-    chromeos/message_loops/fake_message_loop.cc \
     chromeos/message_loops/fake_message_loop_unittest.cc \
     chromeos/mime_utils_unittest.cc \
     chromeos/process_unittest.cc \
     chromeos/secure_blob_unittest.cc \
-    chromeos/streams/fake_stream.cc \
     chromeos/streams/fake_stream_unittest.cc \
     chromeos/streams/file_stream_unittest.cc \
     chromeos/streams/input_stream_set_unittest.cc \
@@ -211,6 +213,23 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_STATIC_LIBRARY)
 
+# Static library for target test-helpers
+# ========================================================
+include $(CLEAR_VARS)
+LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
+LOCAL_MODULE := libchromeos-test-helpers
+LOCAL_SRC_FILES := $(libchromeos_test_helpers_sources)
+LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_STATIC_LIBRARIES := libgtest libgmock
+LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
+    libchromeos-http libchromeos-stream libcrypto
+LOCAL_CFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CFLAGS) -Wno-sign-compare
+LOCAL_CLANG := true
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_STATIC_LIBRARY)
+
 # Unit tests.
 # ========================================================
 include $(CLEAR_VARS)
@@ -218,7 +237,8 @@ LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos_test
 LOCAL_SRC_FILES := $(libchromeos_test_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers libgmock
+LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
+    libchromeos-test-helpers libgmock
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
     libchromeos-http libchromeos-stream libcrypto
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)

@@ -14,6 +14,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(HOST_OS),linux)
+
 libchromeos_cpp_extension := .cc
 libchromeos_core_sources := \
     chromeos/asynchronous_signal_handler.cc \
@@ -262,3 +264,5 @@ LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 include $(BUILD_NATIVE_TEST)
+
+endif # HOST_OS == linux

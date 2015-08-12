@@ -29,6 +29,7 @@ libchromeos_core_sources := \
     chromeos/key_value_store.cc \
     chromeos/message_loops/base_message_loop.cc \
     chromeos/message_loops/message_loop.cc \
+    chromeos/message_loops/message_loop_utils.cc \
     chromeos/mime_utils.cc \
     chromeos/process.cc \
     chromeos/process_information.cc \

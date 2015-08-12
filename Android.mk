@@ -107,8 +107,7 @@ libchromeos_test_sources := \
     chromeos/streams/stream_unittest.cc \
     chromeos/streams/stream_utils_unittest.cc \
     chromeos/strings/string_utils_unittest.cc \
-    chromeos/url_utils_unittest.cc \
-    testrunner_android.cc
+    chromeos/url_utils_unittest.cc
 
 libchromeos_CFLAGS := -Wall -D__BRILLO__ \
     -Wno-char-subscripts -Wno-missing-field-initializers \
@@ -258,12 +257,21 @@ LOCAL_MODULE := libchromeos_test
 LOCAL_SRC_FILES := $(libchromeos_test_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
-    libchromeos-test-helpers libgmock
+    libchromeos-test-helpers libgmock libBionicGtestMain
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
     libchromeos-http libchromeos-stream libcrypto
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 include $(BUILD_NATIVE_TEST)
+
+# Run unit tests on target
+# ========================================================
+# We su shell because process tests try setting "illegal"
+# uid/gids and expecting failures, but root can legally
+# set those to any value.
+runtargettests: libchromeos_test
+	adb sync
+	adb shell su shell /data/nativetest/libchromeos_test/libchromeos_test
 
 endif # HOST_OS == linux

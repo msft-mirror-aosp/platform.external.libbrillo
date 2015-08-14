@@ -192,7 +192,7 @@
       'sources': [
         'chromeos/minijail/minijail.cc',
       ],
-      'include_dirs': ['<(sysroot)/usr/include/chromeos'],
+      'includes': ['<(sysroot)/usr/include/chromeos'],
     },
     {
       'target_name': 'libchromeos-ui-<(libbase_ver)',

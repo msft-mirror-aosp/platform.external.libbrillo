@@ -109,7 +109,7 @@ libchromeos_test_sources := \
     chromeos/strings/string_utils_unittest.cc \
     chromeos/url_utils_unittest.cc
 
-libchromeos_CFLAGS := -Wall -D__BRILLO__ \
+libchromeos_CFLAGS := -Wall \
     -Wno-char-subscripts -Wno-missing-field-initializers \
     -Wno-unused-function -Wno-unused-parameter -Werror
 libchromeos_CPPFLAGS := -Wno-non-virtual-dtor -Wno-sign-promo \

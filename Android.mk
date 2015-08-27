@@ -146,7 +146,7 @@ LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) external/dbus
 include $(BUILD_SHARED_LIBRARY)
 
 # Shared minijail library for target

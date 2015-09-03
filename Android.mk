@@ -181,7 +181,7 @@ LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
     libcrypto libssl
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -197,7 +197,7 @@ LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
     libchromeos-stream libcurl
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -228,7 +228,7 @@ LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -245,7 +245,7 @@ LOCAL_STATIC_LIBRARIES := libgtest libgmock
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
     libchromeos-http libchromeos-stream libcrypto
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CFLAGS) -Wno-sign-compare
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -281,7 +281,7 @@ LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
     libchromeos-http libchromeos-stream libcrypto
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CFLAGS) -Wno-sign-compare
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 include $(BUILD_NATIVE_TEST)
 

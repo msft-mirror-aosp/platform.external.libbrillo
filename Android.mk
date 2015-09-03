@@ -62,6 +62,10 @@ libchromeos_http_sources := \
     chromeos/http/http_transport_curl.cc \
     chromeos/http/http_utils.cc
 
+libchromeos_policy_sources := \
+    policy/device_policy.cc \
+    policy/libpolicy.cc
+
 libchromeos_stream_sources := \
     chromeos/streams/file_stream.cc \
     chromeos/streams/input_stream_set.cc \
@@ -193,6 +197,21 @@ LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
     libchromeos-stream libcurl
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CFLAGS)
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_CLANG := true
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_SHARED_LIBRARY)
+
+# Shared policy library for target
+# ========================================================
+include $(CLEAR_VARS)
+LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
+LOCAL_MODULE := libchromeos-policy
+LOCAL_SRC_FILES := $(libchromeos_policy_sources)
+LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
+LOCAL_CFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)

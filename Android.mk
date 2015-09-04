@@ -32,6 +32,7 @@ libchromeos_core_sources := \
     chromeos/message_loops/message_loop_utils.cc \
     chromeos/mime_utils.cc \
     chromeos/process.cc \
+    chromeos/process_reaper.cc \
     chromeos/process_information.cc \
     chromeos/secure_blob.cc \
     chromeos/strings/string_utils.cc \

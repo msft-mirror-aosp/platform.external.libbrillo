@@ -101,6 +101,7 @@ libchromeos_test_sources := \
     chromeos/map_utils_unittest.cc \
     chromeos/message_loops/fake_message_loop_unittest.cc \
     chromeos/mime_utils_unittest.cc \
+    chromeos/process_reaper_unittest.cc \
     chromeos/process_unittest.cc \
     chromeos/secure_blob_unittest.cc \
     chromeos/streams/fake_stream_unittest.cc \

@@ -38,7 +38,10 @@ libchromeos_core_sources := \
     chromeos/strings/string_utils.cc \
     chromeos/syslog_logging.cc \
     chromeos/type_name_undecorate.cc \
-    chromeos/url_utils.cc
+    chromeos/url_utils.cc \
+
+libchromeos_binder_sources := \
+    chromeos/binder_watcher.cc \
 
 libchromeos_dbus_sources := \
     chromeos/any.cc \
@@ -52,7 +55,7 @@ libchromeos_dbus_sources := \
     chromeos/dbus/dbus_signal.cc \
     chromeos/dbus/exported_object_manager.cc \
     chromeos/dbus/exported_property_set.cc \
-    chromeos/dbus/utils.cc
+    chromeos/dbus/utils.cc \
 
 libchromeos_http_sources := \
     chromeos/http/curl_api.cc \
@@ -61,11 +64,11 @@ libchromeos_http_sources := \
     chromeos/http/http_request.cc \
     chromeos/http/http_transport.cc \
     chromeos/http/http_transport_curl.cc \
-    chromeos/http/http_utils.cc
+    chromeos/http/http_utils.cc \
 
 libchromeos_policy_sources := \
     policy/device_policy.cc \
-    policy/libpolicy.cc
+    policy/libpolicy.cc \
 
 libchromeos_stream_sources := \
     chromeos/streams/file_stream.cc \
@@ -76,7 +79,7 @@ libchromeos_stream_sources := \
     chromeos/streams/stream.cc \
     chromeos/streams/stream_errors.cc \
     chromeos/streams/stream_utils.cc \
-    chromeos/streams/tls_stream.cc
+    chromeos/streams/tls_stream.cc \
 
 libchromeos_test_helpers_sources := \
     chromeos/http/http_connection_fake.cc \
@@ -113,7 +116,7 @@ libchromeos_test_sources := \
     chromeos/streams/stream_unittest.cc \
     chromeos/streams/stream_utils_unittest.cc \
     chromeos/strings/string_utils_unittest.cc \
-    chromeos/url_utils_unittest.cc
+    chromeos/url_utils_unittest.cc \
 
 libchromeos_CFLAGS := -Wall \
     -Wno-char-subscripts -Wno-missing-field-initializers \
@@ -132,6 +135,22 @@ LOCAL_SRC_FILES := $(libchromeos_core_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
+LOCAL_CFLAGS := $(libchromeos_CFLAGS)
+LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_RTTI_FLAG := -frtti
+LOCAL_CLANG := true
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_SHARED_LIBRARY)
+
+# Shared binder library for target
+# ========================================================
+include $(CLEAR_VARS)
+LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
+LOCAL_MODULE := libchromeos-binder
+LOCAL_SRC_FILES := $(libchromeos_binder_sources)
+LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) \
+    libbinder libutils
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti

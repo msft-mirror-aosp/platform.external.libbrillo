@@ -14,8 +14,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(HOST_OS),linux)
-
 libchromeos_cpp_extension := .cc
 libchromeos_core_sources := \
     chromeos/asynchronous_signal_handler.cc \
@@ -313,5 +311,3 @@ include $(BUILD_NATIVE_TEST)
 runtargettests: libchromeos_test
 	adb sync
 	adb shell su shell /data/nativetest/libchromeos_test/libchromeos_test
-
-endif # HOST_OS == linux

@@ -16,13 +16,10 @@ LOCAL_PATH := $(call my-dir)
 
 libchromeos_cpp_extension := .cc
 libchromeos_core_sources := \
-    chromeos/asynchronous_signal_handler.cc \
     chromeos/backoff_entry.cc \
-    chromeos/daemons/daemon.cc \
     chromeos/data_encoding.cc \
     chromeos/errors/error.cc \
     chromeos/errors/error_codes.cc \
-    chromeos/file_utils.cc \
     chromeos/flag_helper.cc \
     chromeos/key_value_store.cc \
     chromeos/message_loops/base_message_loop.cc \
@@ -30,13 +27,18 @@ libchromeos_core_sources := \
     chromeos/message_loops/message_loop_utils.cc \
     chromeos/mime_utils.cc \
     chromeos/process.cc \
-    chromeos/process_reaper.cc \
     chromeos/process_information.cc \
     chromeos/secure_blob.cc \
     chromeos/strings/string_utils.cc \
     chromeos/syslog_logging.cc \
     chromeos/type_name_undecorate.cc \
     chromeos/url_utils.cc \
+
+libchromeos_linux_sources := \
+    chromeos/asynchronous_signal_handler.cc \
+    chromeos/daemons/daemon.cc \
+    chromeos/file_utils.cc \
+    chromeos/process_reaper.cc \
 
 libchromeos_binder_sources := \
     chromeos/binder_watcher.cc \
@@ -129,7 +131,7 @@ libchromeos_shared_libraries := libchrome
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos
-LOCAL_SRC_FILES := $(libchromeos_core_sources)
+LOCAL_SRC_FILES := $(libchromeos_core_sources) $(libchromeos_linux_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
@@ -241,7 +243,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos
-LOCAL_SRC_FILES := $(libchromeos_core_sources)
+LOCAL_SRC_FILES := $(libchromeos_core_sources) $(libchromeos_linux_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
@@ -271,7 +273,6 @@ include $(BUILD_STATIC_LIBRARY)
 
 # Shared library for host
 # ========================================================
-ifeq ($(HOST_OS),linux)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos-host
@@ -285,7 +286,6 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
-endif
 
 # Unit tests.
 # ========================================================

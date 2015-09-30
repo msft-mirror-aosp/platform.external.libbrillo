@@ -292,6 +292,7 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos_test
+LOCAL_MODULE_TAGS := debug
 LOCAL_SRC_FILES := $(libchromeos_test_sources)
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \

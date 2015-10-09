@@ -26,6 +26,7 @@ libchromeos_core_sources := \
     chromeos/message_loops/message_loop.cc \
     chromeos/message_loops/message_loop_utils.cc \
     chromeos/mime_utils.cc \
+    chromeos/osrelease_reader.cc \
     chromeos/process.cc \
     chromeos/process_information.cc \
     chromeos/secure_blob.cc \
@@ -104,6 +105,7 @@ libchromeos_test_sources := \
     chromeos/map_utils_unittest.cc \
     chromeos/message_loops/fake_message_loop_unittest.cc \
     chromeos/mime_utils_unittest.cc \
+    chromeos/osrelease_reader_unittest.cc \
     chromeos/process_reaper_unittest.cc \
     chromeos/process_unittest.cc \
     chromeos/secure_blob_unittest.cc \

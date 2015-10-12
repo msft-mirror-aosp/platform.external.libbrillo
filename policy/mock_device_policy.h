@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_CHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_
-#define LIBCHROMEOS_CHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_
+#ifndef LIBCHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_
+#define LIBCHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_
 
 #include <set>
 #include <string>
@@ -104,4 +104,4 @@ class MockDevicePolicy : public DevicePolicy {
 
 #pragma GCC visibility pop
 
-#endif  // LIBCHROMEOS_CHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_
+#endif  // LIBCHROMEOS_POLICY_MOCK_DEVICE_POLICY_H_

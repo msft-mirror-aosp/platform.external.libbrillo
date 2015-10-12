@@ -17,7 +17,7 @@
 #include <gtest/gtest.h>
 
 #include <base/at_exit.h>
-#include <chromeos/test_helpers.h>
+#include <brillo/test_helpers.h>
 
 int main(int argc, char** argv) {
   base::AtExitManager at_exit_manager;

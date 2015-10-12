@@ -16,109 +16,109 @@ LOCAL_PATH := $(call my-dir)
 
 libchromeos_cpp_extension := .cc
 libchromeos_core_sources := \
-    chromeos/backoff_entry.cc \
-    chromeos/data_encoding.cc \
-    chromeos/errors/error.cc \
-    chromeos/errors/error_codes.cc \
-    chromeos/flag_helper.cc \
-    chromeos/key_value_store.cc \
-    chromeos/message_loops/base_message_loop.cc \
-    chromeos/message_loops/message_loop.cc \
-    chromeos/message_loops/message_loop_utils.cc \
-    chromeos/mime_utils.cc \
-    chromeos/osrelease_reader.cc \
-    chromeos/process.cc \
-    chromeos/process_information.cc \
-    chromeos/secure_blob.cc \
-    chromeos/strings/string_utils.cc \
-    chromeos/syslog_logging.cc \
-    chromeos/type_name_undecorate.cc \
-    chromeos/url_utils.cc \
+    brillo/backoff_entry.cc \
+    brillo/data_encoding.cc \
+    brillo/errors/error.cc \
+    brillo/errors/error_codes.cc \
+    brillo/flag_helper.cc \
+    brillo/key_value_store.cc \
+    brillo/message_loops/base_message_loop.cc \
+    brillo/message_loops/message_loop.cc \
+    brillo/message_loops/message_loop_utils.cc \
+    brillo/mime_utils.cc \
+    brillo/osrelease_reader.cc \
+    brillo/process.cc \
+    brillo/process_information.cc \
+    brillo/secure_blob.cc \
+    brillo/strings/string_utils.cc \
+    brillo/syslog_logging.cc \
+    brillo/type_name_undecorate.cc \
+    brillo/url_utils.cc \
 
 libchromeos_linux_sources := \
-    chromeos/asynchronous_signal_handler.cc \
-    chromeos/daemons/daemon.cc \
-    chromeos/file_utils.cc \
-    chromeos/process_reaper.cc \
+    brillo/asynchronous_signal_handler.cc \
+    brillo/daemons/daemon.cc \
+    brillo/file_utils.cc \
+    brillo/process_reaper.cc \
 
 libchromeos_binder_sources := \
-    chromeos/binder_watcher.cc \
+    brillo/binder_watcher.cc \
 
 libchromeos_dbus_sources := \
-    chromeos/any.cc \
-    chromeos/daemons/dbus_daemon.cc \
-    chromeos/dbus/async_event_sequencer.cc \
-    chromeos/dbus/data_serialization.cc \
-    chromeos/dbus/dbus_method_invoker.cc \
-    chromeos/dbus/dbus_method_response.cc \
-    chromeos/dbus/dbus_object.cc \
-    chromeos/dbus/dbus_service_watcher.cc \
-    chromeos/dbus/dbus_signal.cc \
-    chromeos/dbus/exported_object_manager.cc \
-    chromeos/dbus/exported_property_set.cc \
-    chromeos/dbus/utils.cc \
+    brillo/any.cc \
+    brillo/daemons/dbus_daemon.cc \
+    brillo/dbus/async_event_sequencer.cc \
+    brillo/dbus/data_serialization.cc \
+    brillo/dbus/dbus_method_invoker.cc \
+    brillo/dbus/dbus_method_response.cc \
+    brillo/dbus/dbus_object.cc \
+    brillo/dbus/dbus_service_watcher.cc \
+    brillo/dbus/dbus_signal.cc \
+    brillo/dbus/exported_object_manager.cc \
+    brillo/dbus/exported_property_set.cc \
+    brillo/dbus/utils.cc \
 
 libchromeos_http_sources := \
-    chromeos/http/curl_api.cc \
-    chromeos/http/http_connection_curl.cc \
-    chromeos/http/http_form_data.cc \
-    chromeos/http/http_request.cc \
-    chromeos/http/http_transport.cc \
-    chromeos/http/http_transport_curl.cc \
-    chromeos/http/http_utils.cc \
+    brillo/http/curl_api.cc \
+    brillo/http/http_connection_curl.cc \
+    brillo/http/http_form_data.cc \
+    brillo/http/http_request.cc \
+    brillo/http/http_transport.cc \
+    brillo/http/http_transport_curl.cc \
+    brillo/http/http_utils.cc \
 
 libchromeos_policy_sources := \
     policy/device_policy.cc \
     policy/libpolicy.cc \
 
 libchromeos_stream_sources := \
-    chromeos/streams/file_stream.cc \
-    chromeos/streams/input_stream_set.cc \
-    chromeos/streams/memory_containers.cc \
-    chromeos/streams/memory_stream.cc \
-    chromeos/streams/openssl_stream_bio.cc \
-    chromeos/streams/stream.cc \
-    chromeos/streams/stream_errors.cc \
-    chromeos/streams/stream_utils.cc \
-    chromeos/streams/tls_stream.cc \
+    brillo/streams/file_stream.cc \
+    brillo/streams/input_stream_set.cc \
+    brillo/streams/memory_containers.cc \
+    brillo/streams/memory_stream.cc \
+    brillo/streams/openssl_stream_bio.cc \
+    brillo/streams/stream.cc \
+    brillo/streams/stream_errors.cc \
+    brillo/streams/stream_utils.cc \
+    brillo/streams/tls_stream.cc \
 
 libchromeos_test_helpers_sources := \
-    chromeos/http/http_connection_fake.cc \
-    chromeos/http/http_transport_fake.cc \
-    chromeos/message_loops/fake_message_loop.cc \
-    chromeos/streams/fake_stream.cc \
+    brillo/http/http_connection_fake.cc \
+    brillo/http/http_transport_fake.cc \
+    brillo/message_loops/fake_message_loop.cc \
+    brillo/streams/fake_stream.cc \
 
 libchromeos_test_sources := \
-    chromeos/asynchronous_signal_handler_unittest.cc \
-    chromeos/backoff_entry_unittest.cc \
-    chromeos/data_encoding_unittest.cc \
-    chromeos/errors/error_codes_unittest.cc \
-    chromeos/errors/error_unittest.cc \
-    chromeos/file_utils_unittest.cc \
-    chromeos/flag_helper_unittest.cc \
-    chromeos/http/http_connection_curl_unittest.cc \
-    chromeos/http/http_form_data_unittest.cc \
-    chromeos/http/http_request_unittest.cc \
-    chromeos/http/http_transport_curl_unittest.cc \
-    chromeos/http/http_utils_unittest.cc \
-    chromeos/key_value_store_unittest.cc \
-    chromeos/map_utils_unittest.cc \
-    chromeos/message_loops/fake_message_loop_unittest.cc \
-    chromeos/mime_utils_unittest.cc \
-    chromeos/osrelease_reader_unittest.cc \
-    chromeos/process_reaper_unittest.cc \
-    chromeos/process_unittest.cc \
-    chromeos/secure_blob_unittest.cc \
-    chromeos/streams/fake_stream_unittest.cc \
-    chromeos/streams/file_stream_unittest.cc \
-    chromeos/streams/input_stream_set_unittest.cc \
-    chromeos/streams/memory_containers_unittest.cc \
-    chromeos/streams/memory_stream_unittest.cc \
-    chromeos/streams/openssl_stream_bio_unittests.cc \
-    chromeos/streams/stream_unittest.cc \
-    chromeos/streams/stream_utils_unittest.cc \
-    chromeos/strings/string_utils_unittest.cc \
-    chromeos/url_utils_unittest.cc \
+    brillo/asynchronous_signal_handler_unittest.cc \
+    brillo/backoff_entry_unittest.cc \
+    brillo/data_encoding_unittest.cc \
+    brillo/errors/error_codes_unittest.cc \
+    brillo/errors/error_unittest.cc \
+    brillo/file_utils_unittest.cc \
+    brillo/flag_helper_unittest.cc \
+    brillo/http/http_connection_curl_unittest.cc \
+    brillo/http/http_form_data_unittest.cc \
+    brillo/http/http_request_unittest.cc \
+    brillo/http/http_transport_curl_unittest.cc \
+    brillo/http/http_utils_unittest.cc \
+    brillo/key_value_store_unittest.cc \
+    brillo/map_utils_unittest.cc \
+    brillo/message_loops/fake_message_loop_unittest.cc \
+    brillo/mime_utils_unittest.cc \
+    brillo/osrelease_reader_unittest.cc \
+    brillo/process_reaper_unittest.cc \
+    brillo/process_unittest.cc \
+    brillo/secure_blob_unittest.cc \
+    brillo/streams/fake_stream_unittest.cc \
+    brillo/streams/file_stream_unittest.cc \
+    brillo/streams/input_stream_set_unittest.cc \
+    brillo/streams/memory_containers_unittest.cc \
+    brillo/streams/memory_stream_unittest.cc \
+    brillo/streams/openssl_stream_bio_unittests.cc \
+    brillo/streams/stream_unittest.cc \
+    brillo/streams/stream_utils_unittest.cc \
+    brillo/strings/string_utils_unittest.cc \
+    brillo/url_utils_unittest.cc \
 
 libchromeos_CFLAGS := -Wall \
     -Wno-char-subscripts -Wno-missing-field-initializers \
@@ -181,7 +181,7 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos-minijail
-LOCAL_SRC_FILES := chromeos/minijail/minijail.cc \
+LOCAL_SRC_FILES := brillo/minijail/minijail.cc \
 
 LOCAL_C_INCLUDES := $(libchromeos_includes)
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \

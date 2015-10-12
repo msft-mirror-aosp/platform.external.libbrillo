@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_CHROMEOS_POLICY_LIBPOLICY_H_
-#define LIBCHROMEOS_CHROMEOS_POLICY_LIBPOLICY_H_
+#ifndef LIBCHROMEOS_POLICY_LIBPOLICY_H_
+#define LIBCHROMEOS_POLICY_LIBPOLICY_H_
 
 #include <string>
 
@@ -47,4 +47,4 @@ class PolicyProvider {
 
 #pragma GCC visibility pop
 
-#endif  // LIBCHROMEOS_CHROMEOS_POLICY_LIBPOLICY_H_
+#endif  // LIBCHROMEOS_POLICY_LIBPOLICY_H_

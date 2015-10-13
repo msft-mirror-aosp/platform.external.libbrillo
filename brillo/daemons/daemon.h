@@ -86,7 +86,7 @@ class BRILLO_EXPORT Daemon : public AsynchronousSignalHandlerInterface {
 
   // Returns a delegate to Quit() method in the base::RunLoop instance.
   base::Closure QuitClosure() const {
-    return chromeos_message_loop_.QuitClosure();
+    return brillo_message_loop_.QuitClosure();
   }
 
  private:
@@ -101,7 +101,7 @@ class BRILLO_EXPORT Daemon : public AsynchronousSignalHandlerInterface {
   // The main message loop for the daemon.
   base::MessageLoopForIO message_loop_;
   // The brillo wrapper for the main message loop.
-  BaseMessageLoop chromeos_message_loop_{&message_loop_};
+  BaseMessageLoop brillo_message_loop_{&message_loop_};
   // A helper to dispatch signal handlers asynchronously, so that the main
   // system signal handler returns as soon as possible.
   AsynchronousSignalHandler async_signal_handler_;

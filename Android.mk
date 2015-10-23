@@ -89,9 +89,21 @@ libchromeos_test_helpers_sources := \
     brillo/streams/fake_stream.cc \
 
 libchromeos_test_sources := \
+    brillo/any_unittest.cc \
+    brillo/any_internal_impl_unittest.cc \
     brillo/asynchronous_signal_handler_unittest.cc \
     brillo/backoff_entry_unittest.cc \
     brillo/data_encoding_unittest.cc \
+    brillo/dbus/async_event_sequencer_unittest.cc \
+    brillo/dbus/data_serialization_unittest.cc \
+    brillo/dbus/dbus_method_invoker_unittest.cc \
+    brillo/dbus/dbus_object_unittest.cc \
+    brillo/dbus/dbus_param_reader_unittest.cc \
+    brillo/dbus/dbus_param_writer_unittest.cc \
+    brillo/dbus/dbus_signal_handler_unittest.cc \
+    brillo/dbus/exported_object_manager_unittest.cc \
+    brillo/dbus/exported_property_set_unittest.cc \
+    brillo/dbus/test.proto \
     brillo/errors/error_codes_unittest.cc \
     brillo/errors/error_unittest.cc \
     brillo/file_utils_unittest.cc \
@@ -119,6 +131,7 @@ libchromeos_test_sources := \
     brillo/streams/stream_utils_unittest.cc \
     brillo/strings/string_utils_unittest.cc \
     brillo/url_utils_unittest.cc \
+    brillo/variant_dictionary_unittest.cc \
 
 libchromeos_CFLAGS := -Wall \
     -Wno-char-subscripts -Wno-missing-field-initializers \
@@ -294,18 +307,25 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
 LOCAL_MODULE := libchromeos_test
+LOCAL_MODULE_CLASS := EXECUTABLES
 ifdef BRILLO
   LOCAL_MODULE_TAGS := debug
 endif
+generated_sources_dir := $(call local-generated-sources-dir)
 LOCAL_SRC_FILES := $(libchromeos_test_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_C_INCLUDES := \
+    $(libchromeos_includes) \
+    $(generated_sources_dir)/proto/external/libchromeos
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
-    libchromeos-test-helpers libgmock libBionicGtestMain
+    libchromeos-test-helpers libgmock libBionicGtestMain \
+    libchrome_dbus_test_helpers
 LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
-    libchromeos-http libchromeos-stream libcrypto
+    libchromeos-dbus libchromeos-http libchromeos-stream libcrypto \
+    libchrome-dbus libdbus libprotobuf-cpp-lite-rtti
 LOCAL_CFLAGS := $(libchromeos_CFLAGS)
 LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
+LOCAL_RTTI_FLAG := -frtti
 include $(BUILD_NATIVE_TEST)
 
 # Run unit tests on target

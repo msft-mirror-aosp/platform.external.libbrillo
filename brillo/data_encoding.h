@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DATA_ENCODING_H_
-#define LIBCHROMEOS_BRILLO_DATA_ENCODING_H_
+#ifndef LIBBRILLO_BRILLO_DATA_ENCODING_H_
+#define LIBBRILLO_BRILLO_DATA_ENCODING_H_
 
 #include <string>
 #include <utility>
@@ -79,4 +79,4 @@ inline bool Base64Decode(const std::string& input, std::string* output) {
 }  // namespace data_encoding
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DATA_ENCODING_H_
+#endif  // LIBBRILLO_BRILLO_DATA_ENCODING_H_

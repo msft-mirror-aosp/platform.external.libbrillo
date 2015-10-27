@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_
 
 #include <string>
 
@@ -95,4 +95,4 @@ class DBusMethodResponse : public DBusMethodResponseBase {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_RESPONSE_H_

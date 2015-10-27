@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_LOCATION_LOGGING_H_
-#define LIBCHROMEOS_BRILLO_LOCATION_LOGGING_H_
+#ifndef LIBBRILLO_BRILLO_LOCATION_LOGGING_H_
+#define LIBBRILLO_BRILLO_LOCATION_LOGGING_H_
 
 // These macros help to log Location objects in verbose mode.
 
@@ -21,4 +21,4 @@
   LAZY_STREAM(VLOG_LOC_STREAM(from_here, verbose_level),                \
               ::logging::DEBUG_MODE && VLOG_IS_ON(verbose_level))
 
-#endif  // LIBCHROMEOS_BRILLO_LOCATION_LOGGING_H_
+#endif  // LIBBRILLO_BRILLO_LOCATION_LOGGING_H_

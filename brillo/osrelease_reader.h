@@ -6,8 +6,8 @@
 // Standard fields can come from both places depending on how we set them. They
 // should always be accessed through this interface.
 
-#ifndef LIBCHROMEOS_BRILLO_OSRELEASE_READER_H_
-#define LIBCHROMEOS_BRILLO_OSRELEASE_READER_H_
+#ifndef LIBBRILLO_BRILLO_OSRELEASE_READER_H_
+#define LIBBRILLO_BRILLO_OSRELEASE_READER_H_
 
 #include <string>
 
@@ -51,4 +51,4 @@ class BRILLO_EXPORT OsReleaseReader final {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_OSRELEASE_READER_H_
+#endif  // LIBBRILLO_BRILLO_OSRELEASE_READER_H_

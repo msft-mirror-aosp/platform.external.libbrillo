@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_
-#define LIBCHROMEOS_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_
+#define LIBBRILLO_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_
 
 #include <set>
 #include <string>
@@ -110,4 +110,4 @@ class BRILLO_EXPORT AsyncEventSequencer
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_ASYNC_EVENT_SEQUENCER_H_

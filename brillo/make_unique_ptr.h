@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MAKE_UNIQUE_PTR_H_
-#define LIBCHROMEOS_BRILLO_MAKE_UNIQUE_PTR_H_
+#ifndef LIBBRILLO_BRILLO_MAKE_UNIQUE_PTR_H_
+#define LIBBRILLO_BRILLO_MAKE_UNIQUE_PTR_H_
 
 #include <memory>
 
@@ -22,4 +22,4 @@ std::unique_ptr<T> make_unique_ptr(T* ptr) {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MAKE_UNIQUE_PTR_H_
+#endif  // LIBBRILLO_BRILLO_MAKE_UNIQUE_PTR_H_

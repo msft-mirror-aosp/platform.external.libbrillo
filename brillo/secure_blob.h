@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_SECURE_BLOB_H_
-#define LIBCHROMEOS_BRILLO_SECURE_BLOB_H_
+#ifndef LIBBRILLO_BRILLO_SECURE_BLOB_H_
+#define LIBBRILLO_BRILLO_SECURE_BLOB_H_
 
 #include <string>
 #include <vector>
@@ -55,4 +55,4 @@ BRILLO_EXPORT int SecureMemcmp(const void* s1, const void* s2, size_t n);
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_SECURE_BLOB_H_
+#endif  // LIBBRILLO_BRILLO_SECURE_BLOB_H_

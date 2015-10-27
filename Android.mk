@@ -14,8 +14,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-libchromeos_cpp_extension := .cc
-libchromeos_core_sources := \
+libbrillo_cpp_extension := .cc
+libbrillo_core_sources := \
     brillo/backoff_entry.cc \
     brillo/data_encoding.cc \
     brillo/errors/error.cc \
@@ -35,16 +35,16 @@ libchromeos_core_sources := \
     brillo/type_name_undecorate.cc \
     brillo/url_utils.cc \
 
-libchromeos_linux_sources := \
+libbrillo_linux_sources := \
     brillo/asynchronous_signal_handler.cc \
     brillo/daemons/daemon.cc \
     brillo/file_utils.cc \
     brillo/process_reaper.cc \
 
-libchromeos_binder_sources := \
+libbrillo_binder_sources := \
     brillo/binder_watcher.cc \
 
-libchromeos_dbus_sources := \
+libbrillo_dbus_sources := \
     brillo/any.cc \
     brillo/daemons/dbus_daemon.cc \
     brillo/dbus/async_event_sequencer.cc \
@@ -58,7 +58,7 @@ libchromeos_dbus_sources := \
     brillo/dbus/exported_property_set.cc \
     brillo/dbus/utils.cc \
 
-libchromeos_http_sources := \
+libbrillo_http_sources := \
     brillo/http/curl_api.cc \
     brillo/http/http_connection_curl.cc \
     brillo/http/http_form_data.cc \
@@ -67,11 +67,11 @@ libchromeos_http_sources := \
     brillo/http/http_transport_curl.cc \
     brillo/http/http_utils.cc \
 
-libchromeos_policy_sources := \
+libbrillo_policy_sources := \
     policy/device_policy.cc \
     policy/libpolicy.cc \
 
-libchromeos_stream_sources := \
+libbrillo_stream_sources := \
     brillo/streams/file_stream.cc \
     brillo/streams/input_stream_set.cc \
     brillo/streams/memory_containers.cc \
@@ -82,13 +82,13 @@ libchromeos_stream_sources := \
     brillo/streams/stream_utils.cc \
     brillo/streams/tls_stream.cc \
 
-libchromeos_test_helpers_sources := \
+libbrillo_test_helpers_sources := \
     brillo/http/http_connection_fake.cc \
     brillo/http/http_transport_fake.cc \
     brillo/message_loops/fake_message_loop.cc \
     brillo/streams/fake_stream.cc \
 
-libchromeos_test_sources := \
+libbrillo_test_sources := \
     brillo/any_unittest.cc \
     brillo/any_internal_impl_unittest.cc \
     brillo/asynchronous_signal_handler_unittest.cc \
@@ -133,25 +133,25 @@ libchromeos_test_sources := \
     brillo/url_utils_unittest.cc \
     brillo/variant_dictionary_unittest.cc \
 
-libchromeos_CFLAGS := -Wall \
+libbrillo_CFLAGS := -Wall \
     -Wno-char-subscripts -Wno-missing-field-initializers \
     -Wno-unused-function -Wno-unused-parameter -Werror
-libchromeos_CPPFLAGS := -Wno-non-virtual-dtor -Wno-sign-promo \
+libbrillo_CPPFLAGS := -Wno-non-virtual-dtor -Wno-sign-promo \
     -Wno-strict-aliasing
-libchromeos_includes := external/gtest/include
-libchromeos_shared_libraries := libchrome
+libbrillo_includes := external/gtest/include
+libbrillo_shared_libraries := libchrome
 
 # Shared library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos
-LOCAL_SRC_FILES := $(libchromeos_core_sources) $(libchromeos_linux_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo
+LOCAL_SRC_FILES := $(libbrillo_core_sources) $(libbrillo_linux_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -160,14 +160,14 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared binder library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-binder
-LOCAL_SRC_FILES := $(libchromeos_binder_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) \
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-binder
+LOCAL_SRC_FILES := $(libbrillo_binder_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) \
     libbinder libutils
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -176,14 +176,14 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared dbus library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-dbus
-LOCAL_SRC_FILES := $(libchromeos_dbus_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-dbus
+LOCAL_SRC_FILES := $(libbrillo_dbus_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libchrome-dbus libdbus
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) external/dbus
@@ -192,15 +192,15 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared minijail library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-minijail
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-minijail
 LOCAL_SRC_FILES := brillo/minijail/minijail.cc \
 
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libminijail
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -209,14 +209,14 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared stream library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-stream
-LOCAL_SRC_FILES := $(libchromeos_stream_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-stream
+LOCAL_SRC_FILES := $(libbrillo_stream_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libcrypto libssl
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -225,14 +225,14 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared http library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-http
-LOCAL_SRC_FILES := $(libchromeos_http_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos \
-    libchromeos-stream libcurl
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-http
+LOCAL_SRC_FILES := $(libbrillo_http_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
+    libbrillo-stream libcurl
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -241,13 +241,13 @@ include $(BUILD_SHARED_LIBRARY)
 # Shared policy library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-policy
-LOCAL_SRC_FILES := $(libchromeos_policy_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-policy
+LOCAL_SRC_FILES := $(libbrillo_policy_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -256,14 +256,14 @@ include $(BUILD_SHARED_LIBRARY)
 # Static library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos
-LOCAL_SRC_FILES := $(libchromeos_core_sources) $(libchromeos_linux_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo
+LOCAL_SRC_FILES := $(libbrillo_core_sources) $(libbrillo_linux_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -272,15 +272,15 @@ include $(BUILD_STATIC_LIBRARY)
 # Static test-helpers library for target
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-test-helpers
-LOCAL_SRC_FILES := $(libchromeos_test_helpers_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-test-helpers
+LOCAL_SRC_FILES := $(libbrillo_test_helpers_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_STATIC_LIBRARIES := libgtest libgmock
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
-    libchromeos-http libchromeos-stream libcrypto
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS) -Wno-sign-compare
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo libcurl \
+    libbrillo-http libbrillo-stream libcrypto
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -289,14 +289,14 @@ include $(BUILD_STATIC_LIBRARY)
 # Shared library for host
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos-host
-LOCAL_SRC_FILES := $(libchromeos_core_sources)
-LOCAL_C_INCLUDES := $(libchromeos_includes)
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo-host
+LOCAL_SRC_FILES := $(libbrillo_core_sources)
+LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := libchrome-host
 LOCAL_STATIC_LIBRARIES := libmodpb64-host
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS)
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
@@ -305,25 +305,25 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 # Unit tests.
 # ========================================================
 include $(CLEAR_VARS)
-LOCAL_CPP_EXTENSION := $(libchromeos_cpp_extension)
-LOCAL_MODULE := libchromeos_test
+LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
+LOCAL_MODULE := libbrillo_test
 LOCAL_MODULE_CLASS := EXECUTABLES
 ifdef BRILLO
   LOCAL_MODULE_TAGS := debug
 endif
 generated_sources_dir := $(call local-generated-sources-dir)
-LOCAL_SRC_FILES := $(libchromeos_test_sources)
+LOCAL_SRC_FILES := $(libbrillo_test_sources)
 LOCAL_C_INCLUDES := \
-    $(libchromeos_includes) \
+    $(libbrillo_includes) \
     $(generated_sources_dir)/proto/external/libchromeos
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
-    libchromeos-test-helpers libgmock libBionicGtestMain \
+    libbrillo-test-helpers libgmock libBionicGtestMain \
     libchrome_dbus_test_helpers
-LOCAL_SHARED_LIBRARIES := $(libchromeos_shared_libraries) libchromeos libcurl \
-    libchromeos-dbus libchromeos-http libchromeos-stream libcrypto \
+LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo libcurl \
+    libbrillo-dbus libbrillo-http libbrillo-stream libcrypto \
     libchrome-dbus libdbus libprotobuf-cpp-lite-rtti
-LOCAL_CFLAGS := $(libchromeos_CFLAGS)
-LOCAL_CPPFLAGS := $(libchromeos_CPPFLAGS) -Wno-sign-compare
+LOCAL_CFLAGS := $(libbrillo_CFLAGS)
+LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
 LOCAL_RTTI_FLAG := -frtti
 include $(BUILD_NATIVE_TEST)
@@ -333,6 +333,6 @@ include $(BUILD_NATIVE_TEST)
 # We su shell because process tests try setting "illegal"
 # uid/gids and expecting failures, but root can legally
 # set those to any value.
-runtargettests: libchromeos_test
+runtargettests: libbrillo_test
 	adb sync
-	adb shell su shell /data/nativetest/libchromeos_test/libchromeos_test
+	adb shell su shell /data/nativetest/libbrillo_test/libbrillo_test

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_POLICY_MOCK_LIBPOLICY_H_
-#define LIBCHROMEOS_POLICY_MOCK_LIBPOLICY_H_
+#ifndef LIBBRILLO_POLICY_MOCK_LIBPOLICY_H_
+#define LIBBRILLO_POLICY_MOCK_LIBPOLICY_H_
 
 #include <gmock/gmock.h>
 #include <set>
@@ -32,4 +32,4 @@ class MockPolicyProvider : public PolicyProvider {
 
 #pragma GCC visibility pop
 
-#endif  // LIBCHROMEOS_POLICY_MOCK_LIBPOLICY_H_
+#endif  // LIBBRILLO_POLICY_MOCK_LIBPOLICY_H_

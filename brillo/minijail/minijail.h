@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MINIJAIL_MINIJAIL_H_
-#define LIBCHROMEOS_BRILLO_MINIJAIL_MINIJAIL_H_
+#ifndef LIBBRILLO_BRILLO_MINIJAIL_MINIJAIL_H_
+#define LIBBRILLO_BRILLO_MINIJAIL_MINIJAIL_H_
 
 #include <vector>
 
@@ -112,4 +112,4 @@ class Minijail {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MINIJAIL_MINIJAIL_H_
+#endif  // LIBBRILLO_BRILLO_MINIJAIL_MINIJAIL_H_

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_ERRORS_ERROR_CODES_H_
-#define LIBCHROMEOS_BRILLO_ERRORS_ERROR_CODES_H_
+#ifndef LIBBRILLO_BRILLO_ERRORS_ERROR_CODES_H_
+#define LIBBRILLO_BRILLO_ERRORS_ERROR_CODES_H_
 
 #include <string>
 
@@ -40,4 +40,4 @@ BRILLO_EXPORT void AddSystemError(ErrorPtr* error,
 }  // namespace errors
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_ERRORS_ERROR_CODES_H_
+#endif  // LIBBRILLO_BRILLO_ERRORS_ERROR_CODES_H_

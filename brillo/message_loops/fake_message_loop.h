@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_
-#define LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_
+#ifndef LIBBRILLO_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_
+#define LIBBRILLO_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_
 
 #include <functional>
 #include <map>
@@ -96,4 +96,4 @@ class BRILLO_EXPORT FakeMessageLoop : public MessageLoop {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_
+#endif  // LIBBRILLO_BRILLO_MESSAGE_LOOPS_FAKE_MESSAGE_LOOP_H_

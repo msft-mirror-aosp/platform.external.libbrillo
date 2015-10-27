@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_TEST_HELPERS_H_
-#define LIBCHROMEOS_BRILLO_TEST_HELPERS_H_
+#ifndef LIBBRILLO_BRILLO_TEST_HELPERS_H_
+#define LIBBRILLO_BRILLO_TEST_HELPERS_H_
 
 #include "gtest/gtest.h"
 
@@ -29,4 +29,4 @@ inline void SetUpTests(int* argc, char** argv, bool log_to_stderr) {
   ::testing::InitGoogleTest(argc, argv);
 }
 
-#endif  // LIBCHROMEOS_BRILLO_TEST_HELPERS_H_
+#endif  // LIBBRILLO_BRILLO_TEST_HELPERS_H_

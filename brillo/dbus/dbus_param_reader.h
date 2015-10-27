@@ -13,8 +13,8 @@
 // until there is only the return type remaining and we fall through to either
 // the void or the non-void final specialization.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_READER_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_READER_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_READER_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_READER_H_
 
 #include <type_traits>
 
@@ -162,4 +162,4 @@ struct DBusParamReader<allow_out_params> {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_READER_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_READER_H_

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_HTTP_HTTP_FORM_DATA_H_
-#define LIBCHROMEOS_BRILLO_HTTP_HTTP_FORM_DATA_H_
+#ifndef LIBBRILLO_BRILLO_HTTP_HTTP_FORM_DATA_H_
+#define LIBBRILLO_BRILLO_HTTP_HTTP_FORM_DATA_H_
 
 #include <memory>
 #include <string>
@@ -230,4 +230,4 @@ class BRILLO_EXPORT FormData final {
 }  // namespace http
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_HTTP_HTTP_FORM_DATA_H_
+#endif  // LIBBRILLO_BRILLO_HTTP_HTTP_FORM_DATA_H_

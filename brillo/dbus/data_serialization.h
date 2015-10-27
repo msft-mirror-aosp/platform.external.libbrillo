@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DATA_SERIALIZATION_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DATA_SERIALIZATION_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DATA_SERIALIZATION_H_
+#define LIBBRILLO_BRILLO_DBUS_DATA_SERIALIZATION_H_
 
 // The main functionality provided by this header file is methods to serialize
 // native C++ data over D-Bus. This includes three major parts:
@@ -883,4 +883,4 @@ inline bool PopVariantValueFromReader(dbus::MessageReader* reader, Any* value) {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DATA_SERIALIZATION_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DATA_SERIALIZATION_H_

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_USERDB_UTILS_H_
-#define LIBCHROMEOS_BRILLO_USERDB_UTILS_H_
+#ifndef LIBBRILLO_BRILLO_USERDB_UTILS_H_
+#define LIBBRILLO_BRILLO_USERDB_UTILS_H_
 
 #include <sys/types.h>
 
@@ -29,4 +29,4 @@ BRILLO_EXPORT bool GetGroupInfo(
 }  // namespace userdb
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_USERDB_UTILS_H_
+#endif  // LIBBRILLO_BRILLO_USERDB_UTILS_H_

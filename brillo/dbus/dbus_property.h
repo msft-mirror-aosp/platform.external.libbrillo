@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_PROPERTY_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_PROPERTY_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_PROPERTY_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_PROPERTY_H_
 
 #include <brillo/dbus/data_serialization.h>
 #include <dbus/property.h>
@@ -91,4 +91,4 @@ class Property : public dbus::PropertyBase {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_PROPERTY_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_PROPERTY_H_

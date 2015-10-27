@@ -2,11 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_CHROMEOS_EXPORT_H_
-#define LIBCHROMEOS_BRILLO_CHROMEOS_EXPORT_H_
+#ifndef LIBBRILLO_BRILLO_BRILLO_EXPORT_H_
+#define LIBBRILLO_BRILLO_BRILLO_EXPORT_H_
 
 // Use BRILLO_EXPORT attribute to decorate your classes, methods and variables
-// that need to be exported out of libchromeos. By default, any symbol not
+// that need to be exported out of libbrillo. By default, any symbol not
 // explicitly marked with BRILLO_EXPORT attribute is not exported.
 
 // Put BRILLO_EXPORT in front of methods or variables and in between the
@@ -57,4 +57,4 @@ class BRILLO_EXPORT Foo {
 // linker errors.
 #define BRILLO_PRIVATE __attribute__((__visibility__("hidden")))
 
-#endif  // LIBCHROMEOS_BRILLO_CHROMEOS_EXPORT_H_
+#endif  // LIBBRILLO_BRILLO_BRILLO_EXPORT_H_

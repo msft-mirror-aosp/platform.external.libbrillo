@@ -4,8 +4,8 @@
 
 // Internal implementation of brillo::Any class.
 
-#ifndef LIBCHROMEOS_BRILLO_ANY_INTERNAL_IMPL_H_
-#define LIBCHROMEOS_BRILLO_ANY_INTERNAL_IMPL_H_
+#ifndef LIBBRILLO_BRILLO_ANY_INTERNAL_IMPL_H_
+#define LIBBRILLO_BRILLO_ANY_INTERNAL_IMPL_H_
 
 #include <type_traits>
 #include <typeinfo>
@@ -370,4 +370,4 @@ void TypedData<T>::MoveTo(Buffer* buffer) {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_ANY_INTERNAL_IMPL_H_
+#endif  // LIBBRILLO_BRILLO_ANY_INTERNAL_IMPL_H_

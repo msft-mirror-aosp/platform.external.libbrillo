@@ -58,8 +58,8 @@ class MyDbusObject {
 };
 */
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_H_
 
 #include <map>
 #include <string>
@@ -576,4 +576,4 @@ class BRILLO_EXPORT DBusObject {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_H_

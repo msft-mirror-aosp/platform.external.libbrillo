@@ -9,44 +9,44 @@ set -e
 OUT=$1
 shift
 for v; do
-  # Extract all the libchromeos sublibs from 'dependencies' section of
-  # 'libchromeos-<(libbase_ver)' target in libchromeos.gypi and convert them
-  # into an array of "-lchromeos-<sublib>-<v>" flags.
+  # Extract all the libbrillo sublibs from 'dependencies' section of
+  # 'libbrillo-<(libbase_ver)' target in libbrillo.gypi and convert them
+  # into an array of "-lbrillo-<sublib>-<v>" flags.
   sublibs=($(sed -n "
-     /'target_name': 'libchromeos-<(libbase_ver)'/,/target_name/ {
+     /'target_name': 'libbrillo-<(libbase_ver)'/,/target_name/ {
        /dependencies/,/],/ {
-         /libchromeos/ {
+         /libbrillo/ {
            s:[',]::g
            s:<(libbase_ver):${v}:g
-           s:libchromeos:-lchromeos:
+           s:libbrillo:-lbrillo:
            p
          }
        }
-     }" libchromeos.gypi))
+     }" libbrillo.gypi))
 
-  echo "GROUP ( AS_NEEDED ( ${sublibs[@]} ) )" > "${OUT}"/lib/libchromeos-${v}.so
+  echo "GROUP ( AS_NEEDED ( ${sublibs[@]} ) )" > "${OUT}"/lib/libbrillo-${v}.so
 
-  deps=$(<"${OUT}"/gen/libchromeos-${v}-deps.txt)
-  pc="${OUT}"/lib/libchromeos-${v}.pc
+  deps=$(<"${OUT}"/gen/libbrillo-${v}-deps.txt)
+  pc="${OUT}"/lib/libbrillo-${v}.pc
 
   sed \
     -e "s/@BSLOT@/${v}/g" \
     -e "s/@PRIVATE_PC@/${deps}/g" \
-    "libchromeos.pc.in" > "${pc}"
+    "libbrillo.pc.in" > "${pc}"
 
-  deps_test=$(<"${OUT}"/gen/libchromeos-test-${v}-deps.txt)
-  deps_test+=" libchromeos-${v}"
+  deps_test=$(<"${OUT}"/gen/libbrillo-test-${v}-deps.txt)
+  deps_test+=" libbrillo-${v}"
   sed \
     -e "s/@BSLOT@/${v}/g" \
     -e "s/@PRIVATE_PC@/${deps_test}/g" \
-    "libchromeos-test.pc.in" > "${OUT}/lib/libchromeos-test-${v}.pc"
+    "libbrillo-test.pc.in" > "${OUT}/lib/libbrillo-test-${v}.pc"
 
 
-  deps_glib=$(<"${OUT}"/gen/libchromeos-glib-${v}-deps.txt)
-  pc_glib="${OUT}"/lib/libchromeos-glib-${v}.pc
+  deps_glib=$(<"${OUT}"/gen/libbrillo-glib-${v}-deps.txt)
+  pc_glib="${OUT}"/lib/libbrillo-glib-${v}.pc
 
   sed \
     -e "s/@BSLOT@/${v}/g" \
     -e "s/@PRIVATE_PC@/${deps_glib}/g" \
-    "libchromeos-glib.pc.in" > "${pc_glib}"
+    "libbrillo-glib.pc.in" > "${pc_glib}"
 done

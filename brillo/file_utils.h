@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_FILE_UTILS_H_
-#define LIBCHROMEOS_BRILLO_FILE_UTILS_H_
+#ifndef LIBBRILLO_BRILLO_FILE_UTILS_H_
+#define LIBBRILLO_BRILLO_FILE_UTILS_H_
 
 #include <sys/types.h>
 
@@ -32,4 +32,4 @@ BRILLO_EXPORT bool TouchFile(const base::FilePath& path);
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_FILE_UTILS_H_
+#endif  // LIBBRILLO_BRILLO_FILE_UTILS_H_

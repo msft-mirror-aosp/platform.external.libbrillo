@@ -20,8 +20,8 @@
 // will be std::reference_wrapper<T>. See 'References' unit tests in
 // any_unittest.cc for examples.
 
-#ifndef LIBCHROMEOS_BRILLO_ANY_H_
-#define LIBCHROMEOS_BRILLO_ANY_H_
+#ifndef LIBBRILLO_BRILLO_ANY_H_
+#define LIBBRILLO_BRILLO_ANY_H_
 
 #include <brillo/any_internal_impl.h>
 
@@ -215,4 +215,4 @@ inline void swap(brillo::Any& lhs, brillo::Any& rhs) {
 
 }  // namespace std
 
-#endif  // LIBCHROMEOS_BRILLO_ANY_H_
+#endif  // LIBBRILLO_BRILLO_ANY_H_

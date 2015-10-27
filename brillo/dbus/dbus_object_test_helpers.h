@@ -9,8 +9,8 @@
 // still use DBusMethodResponse to send back the method results).
 // This file provide testing-only helpers to make calling D-Bus method handlers
 // easier.
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_
 
 #include <base/bind.h>
 #include <base/memory/weak_ptr.h>
@@ -49,7 +49,7 @@ struct ResponseHolder final : public base::SupportsWeakPtr<ResponseHolder> {
 
 // Dispatches a D-Bus method call to the corresponding handler.
 // Used mostly for testing purposes. This method is inlined so that it is
-// not included in the shipping code of libchromeos, and included at the
+// not included in the shipping code of libbrillo, and included at the
 // call sites. Returns a response from the method handler or nullptr if the
 // method hasn't provided the response message immediately
 // (i.e. it is asynchronous).
@@ -140,4 +140,4 @@ struct MethodHandlerInvoker<void> {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_TEST_HELPERS_H_

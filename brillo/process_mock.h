@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_PROCESS_MOCK_H_
-#define LIBCHROMEOS_BRILLO_PROCESS_MOCK_H_
+#ifndef LIBBRILLO_BRILLO_PROCESS_MOCK_H_
+#define LIBBRILLO_BRILLO_PROCESS_MOCK_H_
 
 #include <string>
 
@@ -40,4 +40,4 @@ class ProcessMock : public Process {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_PROCESS_MOCK_H_
+#endif  // LIBBRILLO_BRILLO_PROCESS_MOCK_H_

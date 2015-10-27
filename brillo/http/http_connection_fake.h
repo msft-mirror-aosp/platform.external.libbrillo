@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_
-#define LIBCHROMEOS_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_
+#ifndef LIBBRILLO_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_
+#define LIBBRILLO_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_
 
 #include <map>
 #include <string>
@@ -59,4 +59,4 @@ class Connection : public http::Connection {
 }  // namespace http
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_
+#endif  // LIBBRILLO_BRILLO_HTTP_HTTP_CONNECTION_FAKE_H_

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_BACKOFF_ENTRY_H_
-#define LIBCHROMEOS_BRILLO_BACKOFF_ENTRY_H_
+#ifndef LIBBRILLO_BRILLO_BACKOFF_ENTRY_H_
+#define LIBBRILLO_BRILLO_BACKOFF_ENTRY_H_
 
 #include <base/time/time.h>
 #include <brillo/brillo_export.h>
@@ -112,4 +112,4 @@ class BRILLO_EXPORT BackoffEntry {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_BACKOFF_ENTRY_H_
+#endif  // LIBBRILLO_BRILLO_BACKOFF_ENTRY_H_

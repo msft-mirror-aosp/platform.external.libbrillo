@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef LIBCHROMEOS_BRILLO_BINDER_WATCHER_H_
-#define LIBCHROMEOS_BRILLO_BINDER_WATCHER_H_
+#ifndef LIBBRILLO_BRILLO_BINDER_WATCHER_H_
+#define LIBBRILLO_BRILLO_BINDER_WATCHER_H_
 
 #include <base/macros.h>
 #include <base/message_loop/message_loop.h>
@@ -44,4 +44,4 @@ class BinderWatcher : public base::MessageLoopForIO::Watcher {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_BINDER_WATCHER_H_
+#endif  // LIBBRILLO_BRILLO_BINDER_WATCHER_H_

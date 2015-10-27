@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_STREAMS_STREAM_ERRORS_H_
-#define LIBCHROMEOS_BRILLO_STREAMS_STREAM_ERRORS_H_
+#ifndef LIBBRILLO_BRILLO_STREAMS_STREAM_ERRORS_H_
+#define LIBBRILLO_BRILLO_STREAMS_STREAM_ERRORS_H_
 
 #include <brillo/brillo_export.h>
 
@@ -24,4 +24,4 @@ BRILLO_EXPORT extern const char kTimeout[];
 }  // namespace errors
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_STREAMS_STREAM_ERRORS_H_
+#endif  // LIBBRILLO_BRILLO_STREAMS_STREAM_ERRORS_H_

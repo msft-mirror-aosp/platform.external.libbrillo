@@ -50,8 +50,8 @@
 // values passed in to the command line, Init(...) must be called after
 // all the DEFINE_xxxx macros have instantiated the variables.
 
-#ifndef LIBCHROMEOS_BRILLO_FLAG_HELPER_H_
-#define LIBCHROMEOS_BRILLO_FLAG_HELPER_H_
+#ifndef LIBBRILLO_BRILLO_FLAG_HELPER_H_
+#define LIBBRILLO_BRILLO_FLAG_HELPER_H_
 
 #include <map>
 #include <memory>
@@ -271,4 +271,4 @@ class BRILLO_EXPORT FlagHelper final {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_FLAG_HELPER_H_
+#endif  // LIBBRILLO_BRILLO_FLAG_HELPER_H_

@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_
-#define LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_
+#ifndef LIBBRILLO_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_
+#define LIBBRILLO_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_
 
 // BaseMessageLoop is a brillo::MessageLoop implementation based on
 // base::MessageLoopForIO. This allows to mix new code using
@@ -152,4 +152,4 @@ class BRILLO_EXPORT BaseMessageLoop : public MessageLoop {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_
+#endif  // LIBBRILLO_BRILLO_MESSAGE_LOOPS_BASE_MESSAGE_LOOP_H_

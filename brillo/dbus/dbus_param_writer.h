@@ -11,8 +11,8 @@
 // method response message. This method skips any non-pointer parameters and
 // only appends the data for arguments that are pointers.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_WRITER_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_WRITER_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_WRITER_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_WRITER_H_
 
 #include <brillo/dbus/data_serialization.h>
 #include <dbus/message.h>
@@ -77,4 +77,4 @@ class DBusParamWriter final {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_PARAM_WRITER_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_PARAM_WRITER_H_

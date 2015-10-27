@@ -6,30 +6,30 @@
       ],
     },
     'include_dirs': [
-      '../libchromeos',
+      '../libbrillo',
     ],
   },
   'targets': [
     {
-      'target_name': 'libchromeos-<(libbase_ver)',
+      'target_name': 'libbrillo-<(libbase_ver)',
       'type': 'none',
       'dependencies': [
-        'libchromeos-core-<(libbase_ver)',
-        'libchromeos-cryptohome-<(libbase_ver)',
-        'libchromeos-http-<(libbase_ver)',
-        'libchromeos-minijail-<(libbase_ver)',
-        'libchromeos-streams-<(libbase_ver)',
+        'libbrillo-core-<(libbase_ver)',
+        'libbrillo-cryptohome-<(libbase_ver)',
+        'libbrillo-http-<(libbase_ver)',
+        'libbrillo-minijail-<(libbase_ver)',
+        'libbrillo-streams-<(libbase_ver)',
         'libpolicy-<(libbase_ver)',
       ],
       'direct_dependent_settings': {
         'include_dirs': [
-          '../libchromeos',
+          '../libbrillo',
         ],
       },
       'includes': ['../common-mk/deps.gypi'],
     },
     {
-      'target_name': 'libchromeos-core-<(libbase_ver)',
+      'target_name': 'libbrillo-core-<(libbase_ver)',
       'type': 'shared_library',
       'variables': {
         'exported_deps': [
@@ -84,11 +84,11 @@
       ],
     },
     {
-      'target_name': 'libchromeos-http-<(libbase_ver)',
+      'target_name': 'libbrillo-http-<(libbase_ver)',
       'type': 'shared_library',
       'dependencies': [
-        'libchromeos-core-<(libbase_ver)',
-        'libchromeos-streams-<(libbase_ver)',
+        'libbrillo-core-<(libbase_ver)',
+        'libbrillo-streams-<(libbase_ver)',
       ],
       'variables': {
         'exported_deps': [
@@ -114,10 +114,10 @@
       ],
     },
     {
-      'target_name': 'libchromeos-streams-<(libbase_ver)',
+      'target_name': 'libbrillo-streams-<(libbase_ver)',
       'type': 'shared_library',
       'dependencies': [
-        'libchromeos-core-<(libbase_ver)',
+        'libbrillo-core-<(libbase_ver)',
       ],
       'variables': {
         'exported_deps': [
@@ -145,11 +145,11 @@
       ],
     },
     {
-      'target_name': 'libchromeos-test-<(libbase_ver)',
+      'target_name': 'libbrillo-test-<(libbase_ver)',
       'type': 'static_library',
       'standalone_static_library': 1,
       'dependencies': [
-        'libchromeos-http-<(libbase_ver)',
+        'libbrillo-http-<(libbase_ver)',
       ],
       'sources': [
         'brillo/http/http_connection_fake.cc',
@@ -160,7 +160,7 @@
       'includes': ['../common-mk/deps.gypi'],
     },
     {
-      'target_name': 'libchromeos-cryptohome-<(libbase_ver)',
+      'target_name': 'libbrillo-cryptohome-<(libbase_ver)',
       'type': 'shared_library',
       'variables': {
         'exported_deps': [
@@ -180,7 +180,7 @@
       ],
     },
     {
-      'target_name': 'libchromeos-minijail-<(libbase_ver)',
+      'target_name': 'libbrillo-minijail-<(libbase_ver)',
       'type': 'shared_library',
       'variables': {
         'exported_deps': [
@@ -224,7 +224,7 @@
         },
       },
       'ldflags': [
-        '-Wl,--version-script,<(platform2_root)/libchromeos/libpolicy.ver',
+        '-Wl,--version-script,<(platform2_root)/libbrillo/libpolicy.ver',
       ],
       'sources': [
         'policy/device_policy.cc',
@@ -233,10 +233,10 @@
       ],
     },
     {
-      'target_name': 'libchromeos-glib-<(libbase_ver)',
+      'target_name': 'libbrillo-glib-<(libbase_ver)',
       'type': 'shared_library',
       'dependencies': [
-          'libchromeos-<(libbase_ver)',
+          'libbrillo-<(libbase_ver)',
       ],
       'variables': {
         'exported_deps': [
@@ -270,12 +270,12 @@
     ['USE_test == 1', {
       'targets': [
         {
-          'target_name': 'libchromeos-<(libbase_ver)_unittests',
+          'target_name': 'libbrillo-<(libbase_ver)_unittests',
           'type': 'executable',
           'dependencies': [
-            'libchromeos-<(libbase_ver)',
-            'libchromeos-test-<(libbase_ver)',
-            'libchromeos-glib-<(libbase_ver)',
+            'libbrillo-<(libbase_ver)',
+            'libbrillo-test-<(libbase_ver)',
+            'libbrillo-glib-<(libbase_ver)',
           ],
           'variables': {
             'deps': [

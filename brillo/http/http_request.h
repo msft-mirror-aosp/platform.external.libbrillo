@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_HTTP_HTTP_REQUEST_H_
-#define LIBCHROMEOS_BRILLO_HTTP_HTTP_REQUEST_H_
+#ifndef LIBBRILLO_BRILLO_HTTP_HTTP_REQUEST_H_
+#define LIBBRILLO_BRILLO_HTTP_HTTP_REQUEST_H_
 
 #include <limits>
 #include <map>
@@ -378,4 +378,4 @@ class BRILLO_EXPORT Response final {
 }  // namespace http
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_HTTP_HTTP_REQUEST_H_
+#endif  // LIBBRILLO_BRILLO_HTTP_HTTP_REQUEST_H_

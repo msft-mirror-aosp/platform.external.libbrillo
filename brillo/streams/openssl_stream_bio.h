@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_
-#define LIBCHROMEOS_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_
+#ifndef LIBBRILLO_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_
+#define LIBBRILLO_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_
 
 #include <brillo/brillo_export.h>
 
@@ -24,4 +24,4 @@ BRILLO_EXPORT BIO* BIO_new_stream(brillo::Stream* stream);
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_
+#endif  // LIBBRILLO_BRILLO_STREAMS_OPENSSL_STREAM_BIO_H_

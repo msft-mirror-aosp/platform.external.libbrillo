@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_SIGNAL_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_SIGNAL_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_SIGNAL_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_SIGNAL_H_
 
 #include <string>
 #include <typeinfo>
@@ -65,4 +65,4 @@ class DBusSignal : public DBusSignalBase {
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_SIGNAL_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_SIGNAL_H_

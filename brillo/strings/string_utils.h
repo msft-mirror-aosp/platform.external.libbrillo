@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_STRINGS_STRING_UTILS_H_
-#define LIBCHROMEOS_BRILLO_STRINGS_STRING_UTILS_H_
+#ifndef LIBBRILLO_BRILLO_STRINGS_STRING_UTILS_H_
+#define LIBBRILLO_BRILLO_STRINGS_STRING_UTILS_H_
 
 #include <string>
 #include <utility>
@@ -128,4 +128,4 @@ BRILLO_EXPORT std::vector<uint8_t> GetStringAsBytes(const std::string& str);
 }  // namespace string_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_STRINGS_STRING_UTILS_H_
+#endif  // LIBBRILLO_BRILLO_STRINGS_STRING_UTILS_H_

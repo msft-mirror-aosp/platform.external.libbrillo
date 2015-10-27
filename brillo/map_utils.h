@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MAP_UTILS_H_
-#define LIBCHROMEOS_BRILLO_MAP_UTILS_H_
+#ifndef LIBBRILLO_BRILLO_MAP_UTILS_H_
+#define LIBBRILLO_BRILLO_MAP_UTILS_H_
 
 #include <map>
 #include <set>
@@ -68,4 +68,4 @@ inline typename T::mapped_type GetOrDefault(
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MAP_UTILS_H_
+#endif  // LIBBRILLO_BRILLO_MAP_UTILS_H_

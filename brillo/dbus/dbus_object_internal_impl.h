@@ -26,8 +26,8 @@
 // to the appropriate method handler using additional data captured by the
 // lambda object.
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_
 
 #include <memory>
 #include <string>
@@ -360,4 +360,4 @@ class RawDBusInterfaceMethodHandler
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_OBJECT_INTERNAL_IMPL_H_

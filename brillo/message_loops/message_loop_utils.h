@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_
-#define LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_
+#ifndef LIBBRILLO_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_
+#define LIBBRILLO_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_
 
 #include <base/callback.h>
 #include <base/time/time.h>
@@ -27,4 +27,4 @@ BRILLO_EXPORT int MessageLoopRunMaxIterations(MessageLoop* loop,
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_
+#endif  // LIBBRILLO_BRILLO_MESSAGE_LOOPS_MESSAGE_LOOP_UTILS_H_

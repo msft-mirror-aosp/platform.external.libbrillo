@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef LIBCHROMEOS_BRILLO_STREAMS_INPUT_STREAM_SET_H_
-#define LIBCHROMEOS_BRILLO_STREAMS_INPUT_STREAM_SET_H_
+#ifndef LIBBRILLO_BRILLO_STREAMS_INPUT_STREAM_SET_H_
+#define LIBBRILLO_BRILLO_STREAMS_INPUT_STREAM_SET_H_
 
 #include <vector>
 
@@ -129,4 +129,4 @@ class BRILLO_EXPORT InputStreamSet : public Stream {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_STREAMS_INPUT_STREAM_SET_H_
+#endif  // LIBBRILLO_BRILLO_STREAMS_INPUT_STREAM_SET_H_

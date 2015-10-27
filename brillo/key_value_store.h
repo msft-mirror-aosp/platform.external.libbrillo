@@ -6,8 +6,8 @@
 // key value store. Each key/value pair is stored on its own line and
 // separated by the first '=' on the line.
 
-#ifndef LIBCHROMEOS_BRILLO_KEY_VALUE_STORE_H_
-#define LIBCHROMEOS_BRILLO_KEY_VALUE_STORE_H_
+#ifndef LIBBRILLO_BRILLO_KEY_VALUE_STORE_H_
+#define LIBBRILLO_BRILLO_KEY_VALUE_STORE_H_
 
 #include <map>
 #include <string>
@@ -73,4 +73,4 @@ class BRILLO_EXPORT KeyValueStore {
 
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_KEY_VALUE_STORE_H_
+#endif  // LIBBRILLO_BRILLO_KEY_VALUE_STORE_H_

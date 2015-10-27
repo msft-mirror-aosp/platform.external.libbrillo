@@ -59,8 +59,8 @@
 //                                   base::Bind(OnError),
 //                                   2, 8.7);
 
-#ifndef LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_
-#define LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_
+#ifndef LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_
+#define LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_
 
 #include <memory>
 #include <string>
@@ -321,4 +321,4 @@ inline void CallMethod(dbus::ObjectProxy* object,
 }  // namespace dbus_utils
 }  // namespace brillo
 
-#endif  // LIBCHROMEOS_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_
+#endif  // LIBBRILLO_BRILLO_DBUS_DBUS_METHOD_INVOKER_H_

@@ -315,7 +315,7 @@ generated_sources_dir := $(call local-generated-sources-dir)
 LOCAL_SRC_FILES := $(libbrillo_test_sources)
 LOCAL_C_INCLUDES := \
     $(libbrillo_includes) \
-    $(generated_sources_dir)/proto/external/libchromeos
+    $(generated_sources_dir)/proto/external/libbrillo
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
     libbrillo-test-helpers libgmock libBionicGtestMain \
     libchrome_dbus_test_helpers

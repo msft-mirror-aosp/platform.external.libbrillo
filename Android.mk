@@ -313,7 +313,9 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
 
-# Shared stream library for target
+ifeq ($(HOST_OS),linux)
+
+# Shared stream library for host
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
@@ -329,7 +331,7 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
 
-# Shared http library for target
+# Shared http library for host
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
@@ -344,6 +346,8 @@ LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
+
+endif  # HOST_OS == linux
 
 # Unit tests.
 # ========================================================

@@ -39,6 +39,7 @@ libbrillo_core_sources := \
     brillo/syslog_logging.cc \
     brillo/type_name_undecorate.cc \
     brillo/url_utils.cc \
+    brillo/userdb_utils.cc \
 
 libbrillo_linux_sources := \
     brillo/asynchronous_signal_handler.cc \

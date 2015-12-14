@@ -122,6 +122,7 @@ libbrillo_test_sources := \
     brillo/streams/stream_unittest.cc \
     brillo/streams/stream_utils_unittest.cc \
     brillo/strings/string_utils_unittest.cc \
+    brillo/unittest_utils.cc \
     brillo/url_utils_unittest.cc \
 
 libbrillo_dbus_test_sources := \

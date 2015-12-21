@@ -122,6 +122,7 @@ libbrillo_test_sources := \
     brillo/streams/stream_unittest.cc \
     brillo/streams/stream_utils_unittest.cc \
     brillo/strings/string_utils_unittest.cc \
+    brillo/type_name_undecorate_unittest.cc \
     brillo/unittest_utils.cc \
     brillo/url_utils_unittest.cc \
 
@@ -159,7 +160,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -175,7 +175,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) \
     libbinder libutils
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -193,7 +192,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libchrome-dbus libdbus
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) external/dbus
 include $(BUILD_SHARED_LIBRARY)
@@ -212,7 +210,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libminijail
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -228,7 +225,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libcrypto libssl
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -244,7 +240,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libbrillo-stream libcurl
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -259,7 +254,6 @@ LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
@@ -276,7 +270,6 @@ LOCAL_STATIC_LIBRARIES := libmodpb64
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_CLANG := true
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_STATIC_LIBRARY)
 
@@ -293,7 +286,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo libcurl \
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_STATIC_LIBRARY)
 
@@ -308,7 +300,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64-host
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
@@ -326,7 +317,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libcrypto-host libssl-host
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
@@ -342,7 +332,6 @@ LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
     libbrillo-stream libcurl-host
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
-LOCAL_RTTI_FLAG := -frtti
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)
@@ -366,7 +355,7 @@ LOCAL_C_INCLUDES := \
 LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
     libbrillo-test-helpers libgmock libBionicGtestMain
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo libcurl \
-    libbrillo-http libbrillo-stream libcrypto libprotobuf-cpp-lite-rtti
+    libbrillo-http libbrillo-stream libcrypto libprotobuf-cpp-lite
 ifeq ($(BRILLO_USE_DBUS),1)
 LOCAL_SRC_FILES += $(libbrillo_dbus_test_sources)
 LOCAL_STATIC_LIBRARIES += libchrome_dbus_test_helpers
@@ -375,7 +364,6 @@ endif  # BRILLO_USE_DBUS == 1
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true
-LOCAL_RTTI_FLAG := -frtti
 include $(BUILD_NATIVE_TEST)
 
 # Run unit tests on target

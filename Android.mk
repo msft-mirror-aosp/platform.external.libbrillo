@@ -140,12 +140,11 @@ libbrillo_dbus_test_sources := \
     brillo/dbus/test.proto \
     brillo/variant_dictionary_unittest.cc \
 
-libbrillo_CFLAGS := -Wall \
-    -Wno-char-subscripts -Wno-missing-field-initializers \
-    -Wno-unused-function -Wno-unused-parameter -Werror \
+libbrillo_CFLAGS := \
+    -Wall \
+    -Werror \
     -DUSE_DBUS=$(BRILLO_USE_DBUS)
-libbrillo_CPPFLAGS := -Wno-non-virtual-dtor -Wno-sign-promo \
-    -Wno-strict-aliasing
+libbrillo_CPPFLAGS :=
 libbrillo_includes := external/gtest/include
 libbrillo_shared_libraries := libchrome
 

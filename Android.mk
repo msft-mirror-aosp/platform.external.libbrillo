@@ -107,6 +107,7 @@ libbrillo_test_sources := \
     brillo/http/http_utils_unittest.cc \
     brillo/key_value_store_unittest.cc \
     brillo/map_utils_unittest.cc \
+    brillo/message_loops/base_message_loop_unittest.cc \
     brillo/message_loops/fake_message_loop_unittest.cc \
     brillo/mime_utils_unittest.cc \
     brillo/osrelease_reader_unittest.cc \

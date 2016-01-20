@@ -300,7 +300,9 @@ LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
 LOCAL_STATIC_LIBRARIES := libmodpb64-host
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
-LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
+LOCAL_CPPFLAGS := \
+    -D__ANDROID_HOST__ \
+    $(libbrillo_CPPFLAGS)
 LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_HOST_SHARED_LIBRARY)

@@ -75,7 +75,7 @@ bool BackoffEntry::CanDiscard() const {
 
   base::TimeTicks now = ImplGetTimeNow();
 
-  int64 unused_since_ms =
+  int64_t unused_since_ms =
       (now - exponential_backoff_release_time_).InMilliseconds();
 
   // Release time is further than now, we are managing it.
@@ -153,7 +153,7 @@ base::TimeTicks BackoffEntry::CalculateReleaseTime() const {
 
   // Decide between maximum release time and calculated release time, accounting
   // for overflow with both.
-  int64 release_time_us = std::min(
+  int64_t release_time_us = std::min(
       calculated_release_time_us.ValueOrDefault(kMaxTime),
       maximum_release_time_us.ValueOrDefault(kMaxTime));
 

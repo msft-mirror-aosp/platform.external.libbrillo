@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Default values for the USE flags. Set these variables in your product .mk
-# file.
-BRILLO_USE_DBUS ?= 1
+# Default values for the USE flags. Override these USE flags from your product
+# by setting BRILLO_USE_* values. Note that we define local variables like
+# local_use_* to prevent leaking our default setting for other packages.
+local_use_dbus := $(if $(BRILLO_USE_DBUS),$(BRILLO_USE_DBUS),1)
 
 LOCAL_PATH := $(call my-dir)
 
@@ -146,7 +147,7 @@ libbrillo_dbus_test_sources := \
 libbrillo_CFLAGS := \
     -Wall \
     -Werror \
-    -DUSE_DBUS=$(BRILLO_USE_DBUS)
+    -DUSE_DBUS=$(local_use_dbus)
 libbrillo_CPPFLAGS :=
 libbrillo_includes := external/gtest/include
 libbrillo_shared_libraries := libchrome
@@ -181,7 +182,7 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 include $(BUILD_SHARED_LIBRARY)
 
-ifeq ($(BRILLO_USE_DBUS),1)
+ifeq ($(local_use_dbus),1)
 
 # Shared dbus library for target
 # ========================================================
@@ -198,7 +199,7 @@ LOCAL_CLANG := true
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH) external/dbus
 include $(BUILD_SHARED_LIBRARY)
 
-endif  # BRILLO_USE_DBUS == 1
+endif  # local_use_dbus == 1
 
 # Shared minijail library for target
 # ========================================================
@@ -360,11 +361,11 @@ LOCAL_STATIC_LIBRARIES := libgtest libchrome_test_helpers \
     libbrillo-test-helpers libgmock libBionicGtestMain
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo libcurl \
     libbrillo-http libbrillo-stream libcrypto libprotobuf-cpp-lite
-ifeq ($(BRILLO_USE_DBUS),1)
+ifeq ($(local_use_dbus),1)
 LOCAL_SRC_FILES += $(libbrillo_dbus_test_sources)
 LOCAL_STATIC_LIBRARIES += libchrome_dbus_test_helpers
 LOCAL_SHARED_LIBRARIES += libbrillo-dbus libchrome-dbus libdbus
-endif  # BRILLO_USE_DBUS == 1
+endif  # local_use_dbus == 1
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS) -Wno-sign-compare
 LOCAL_CLANG := true

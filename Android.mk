@@ -40,6 +40,7 @@ libbrillo_core_sources := \
     brillo/type_name_undecorate.cc \
     brillo/url_utils.cc \
     brillo/userdb_utils.cc \
+    brillo/value_conversion.cc \
 
 libbrillo_linux_sources := \
     brillo/asynchronous_signal_handler.cc \
@@ -129,6 +130,7 @@ libbrillo_test_sources := \
     brillo/type_name_undecorate_unittest.cc \
     brillo/unittest_utils.cc \
     brillo/url_utils_unittest.cc \
+    brillo/value_conversion_unittest.cc \
 
 libbrillo_dbus_test_sources := \
     brillo/any_unittest.cc \

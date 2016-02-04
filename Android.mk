@@ -177,8 +177,11 @@ LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
 LOCAL_MODULE := libbrillo-binder
 LOCAL_SRC_FILES := $(libbrillo_binder_sources)
 LOCAL_C_INCLUDES := $(libbrillo_includes)
-LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) \
-    libbinder libutils
+LOCAL_SHARED_LIBRARIES := \
+    $(libbrillo_shared_libraries) \
+    libbinder \
+    libbrillo \
+    libutils
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)
 LOCAL_CLANG := true

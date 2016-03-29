@@ -95,6 +95,7 @@ libbrillo_test_helpers_sources := \
     brillo/http/http_transport_fake.cc \
     brillo/message_loops/fake_message_loop.cc \
     brillo/streams/fake_stream.cc \
+    brillo/unittest_utils.cc \
 
 libbrillo_test_sources := \
     brillo/asynchronous_signal_handler_unittest.cc \

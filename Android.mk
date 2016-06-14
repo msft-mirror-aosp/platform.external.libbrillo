@@ -355,7 +355,7 @@ endif  # HOST_OS == linux
 include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
 LOCAL_MODULE := libbrillo_test
-LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_CLASS := NATIVE_TESTS
 ifdef BRILLO
   LOCAL_MODULE_TAGS := eng
 endif

@@ -30,7 +30,7 @@ template <typename Lambda, typename R, typename... Args>
 class LambdaAdapter<Lambda, R(Lambda::*)(Args... args)> {
  public:
   typedef R(RunType)(Args...);
-  LambdaAdapter(Lambda lambda) : lambda_(lambda) {}
+  explicit LambdaAdapter(Lambda lambda) : lambda_(lambda) {}
   R Run(Args... args) { return lambda_(std::forward<Args>(args)...); }
 
  private:
@@ -42,7 +42,7 @@ template <typename Lambda, typename R, typename... Args>
 class LambdaAdapter<Lambda, R(Lambda::*)(Args... args) const> {
  public:
   typedef R(RunType)(Args...);
-  LambdaAdapter(Lambda lambda) : lambda_(lambda) {}
+  explicit LambdaAdapter(Lambda lambda) : lambda_(lambda) {}
   R Run(Args... args) { return lambda_(std::forward<Args>(args)...); }
 
  private:

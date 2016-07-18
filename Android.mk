@@ -313,7 +313,7 @@ LOCAL_MODULE := libbrillo
 LOCAL_SRC_FILES := $(libbrillo_core_sources)
 LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries)
-LOCAL_STATIC_LIBRARIES := libmodpb64-host libgtest_prod
+LOCAL_STATIC_LIBRARIES := libmodpb64 libgtest_prod
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := \
     -D__ANDROID_HOST__ \

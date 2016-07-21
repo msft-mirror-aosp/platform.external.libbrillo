@@ -332,7 +332,7 @@ LOCAL_MODULE := libbrillo-stream
 LOCAL_SRC_FILES := $(libbrillo_stream_sources)
 LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
-    libcrypto-host libssl-host
+    libcrypto libssl
 LOCAL_STATIC_LIBRARIES := libgtest_prod
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)

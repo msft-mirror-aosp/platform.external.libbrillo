@@ -364,9 +364,6 @@ include $(CLEAR_VARS)
 LOCAL_CPP_EXTENSION := $(libbrillo_cpp_extension)
 LOCAL_MODULE := libbrillo_test
 LOCAL_MODULE_CLASS := NATIVE_TESTS
-ifdef BRILLO
-  LOCAL_MODULE_TAGS := eng
-endif
 generated_sources_dir := $(call local-generated-sources-dir)
 LOCAL_SRC_FILES := $(libbrillo_test_sources)
 LOCAL_C_INCLUDES := \

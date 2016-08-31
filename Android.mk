@@ -364,7 +364,7 @@ LOCAL_MODULE := libbrillo-http
 LOCAL_SRC_FILES := $(libbrillo_http_sources)
 LOCAL_C_INCLUDES := $(libbrillo_includes)
 LOCAL_SHARED_LIBRARIES := $(libbrillo_shared_libraries) libbrillo \
-    libbrillo-stream libcurl-host
+    libbrillo-stream libcurl
 LOCAL_STATIC_LIBRARIES := libgtest_prod
 LOCAL_CFLAGS := $(libbrillo_CFLAGS)
 LOCAL_CPPFLAGS := $(libbrillo_CPPFLAGS)

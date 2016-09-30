@@ -128,7 +128,6 @@ libbrillo_test_sources := \
     brillo/streams/stream_unittest.cc \
     brillo/streams/stream_utils_unittest.cc \
     brillo/strings/string_utils_unittest.cc \
-    brillo/type_name_undecorate_unittest.cc \
     brillo/unittest_utils.cc \
     brillo/url_utils_unittest.cc \
     brillo/value_conversion_unittest.cc \
@@ -146,6 +145,7 @@ libbrillo_dbus_test_sources := \
     brillo/dbus/exported_object_manager_unittest.cc \
     brillo/dbus/exported_property_set_unittest.cc \
     brillo/dbus/test.proto \
+    brillo/type_name_undecorate_unittest.cc \
     brillo/variant_dictionary_unittest.cc \
 
 libbrillo_CFLAGS := \

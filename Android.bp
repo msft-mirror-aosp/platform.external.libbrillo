@@ -131,7 +131,7 @@ libbrillo_shared_libraries = ["libchrome"]
 cc_library {
     name: "libbrillo",
     host_supported: true,
-    srcs: libbrillo_core_sources + libbrillo_linux_sources,
+    srcs: libbrillo_core_sources,
     shared_libs: libbrillo_shared_libraries,
     static_libs: [
         "libmodpb64",
@@ -143,6 +143,9 @@ cc_library {
     target: {
         host: {
             cppflags: ["-D__ANDROID_HOST__"],
+        },
+        android: {
+            srcs: libbrillo_linux_sources,
         },
     },
 }

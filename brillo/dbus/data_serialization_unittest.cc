@@ -6,13 +6,12 @@
 
 #include <limits>
 
-#include <base/files/scoped_file.h>
 #include <brillo/variant_dictionary.h>
 #include <gtest/gtest.h>
 
 #include "brillo/dbus/test.pb.h"
 
-using base::ScopedFD;
+using dbus::FileDescriptor;
 using dbus::Message;
 using dbus::MessageReader;
 using dbus::MessageWriter;
@@ -34,7 +33,7 @@ TEST(DBusUtils, Supported_BasicTypes) {
   EXPECT_TRUE(IsTypeSupported<double>::value);
   EXPECT_TRUE(IsTypeSupported<std::string>::value);
   EXPECT_TRUE(IsTypeSupported<ObjectPath>::value);
-  EXPECT_TRUE(IsTypeSupported<ScopedFD>::value);
+  EXPECT_TRUE(IsTypeSupported<FileDescriptor>::value);
   EXPECT_TRUE(IsTypeSupported<Any>::value);
   EXPECT_TRUE(IsTypeSupported<google::protobuf::MessageLite>::value);
   EXPECT_TRUE(IsTypeSupported<dbus_utils_test::TestMessage>::value);
@@ -90,7 +89,7 @@ TEST(DBusUtils, Signatures_BasicTypes) {
   EXPECT_EQ("d", GetDBusSignature<double>());
   EXPECT_EQ("s", GetDBusSignature<std::string>());
   EXPECT_EQ("o", GetDBusSignature<ObjectPath>());
-  EXPECT_EQ("h", GetDBusSignature<ScopedFD>());
+  EXPECT_EQ("h", GetDBusSignature<FileDescriptor>());
   EXPECT_EQ("v", GetDBusSignature<Any>());
 }
 
@@ -106,7 +105,7 @@ TEST(DBusUtils, Signatures_Arrays) {
   EXPECT_EQ("ad", GetDBusSignature<std::vector<double>>());
   EXPECT_EQ("as", GetDBusSignature<std::vector<std::string>>());
   EXPECT_EQ("ao", GetDBusSignature<std::vector<ObjectPath>>());
-  EXPECT_EQ("ah", GetDBusSignature<std::vector<ScopedFD>>());
+  EXPECT_EQ("ah", GetDBusSignature<std::vector<FileDescriptor>>());
   EXPECT_EQ("av", GetDBusSignature<std::vector<Any>>());
   EXPECT_EQ("a(is)",
             (GetDBusSignature<std::vector<std::pair<int, std::string>>>()));
@@ -239,7 +238,7 @@ TEST(DBusUtils, AppendAndPopFileDescriptor) {
   MessageWriter writer(message.get());
 
   // Append stdout.
-  ScopedFD temp(1);
+  FileDescriptor temp(1);
   // Descriptor should not be valid until checked.
   EXPECT_FALSE(temp.is_valid());
   // NB: thread IO requirements not relevant for unit tests.
@@ -249,7 +248,7 @@ TEST(DBusUtils, AppendAndPopFileDescriptor) {
 
   EXPECT_EQ("h", message->GetSignature());
 
-  ScopedFD fd_value;
+  FileDescriptor fd_value;
 
   MessageReader reader(message.get());
   EXPECT_TRUE(reader.HasMoreData());

@@ -6,7 +6,6 @@
 
 #include <string>
 
-#include <base/files/scoped_file.h>
 #include <brillo/bind_lambda.h>
 #include <dbus/mock_bus.h>
 #include <dbus/mock_object_proxy.h>
@@ -91,7 +90,7 @@ class DBusMethodInvokerTest : public testing::Test {
       } else if (method_call->GetMember() == kTestMethod4) {
         method_call->SetSerial(123);
         MessageReader reader(method_call);
-        base::ScopedFD fd;
+        dbus::FileDescriptor fd;
         if (reader.PopFileDescriptor(&fd)) {
           auto response = Response::CreateEmpty();
           MessageWriter writer(response.get());
@@ -132,13 +131,13 @@ class DBusMethodInvokerTest : public testing::Test {
   }
 
   // Sends a file descriptor received over D-Bus back to the caller.
-  base::ScopedFD EchoFD(const base::ScopedFD& fd_in) {
+  dbus::FileDescriptor EchoFD(const dbus::FileDescriptor& fd_in) {
     std::unique_ptr<dbus::Response> response =
         brillo::dbus_utils::CallMethodAndBlock(mock_object_proxy_.get(),
                                                kTestInterface, kTestMethod4,
                                                nullptr, fd_in);
     EXPECT_NE(nullptr, response.get());
-    base::ScopedFD fd_out;
+    dbus::FileDescriptor fd_out;
     using brillo::dbus_utils::ExtractMethodCallResults;
     EXPECT_TRUE(ExtractMethodCallResults(response.get(), nullptr, &fd_out));
     return fd_out;
@@ -180,13 +179,13 @@ TEST_F(DBusMethodInvokerTest, TestFileDescriptors) {
   // Passing a file descriptor over D-Bus would effectively duplicate the fd.
   // So the resulting file descriptor value would be different but it still
   // should be valid.
-  base::ScopedFD fd_stdin(0);
+  dbus::FileDescriptor fd_stdin(0);
   fd_stdin.CheckValidity();
   EXPECT_NE(fd_stdin.value(), EchoFD(fd_stdin).value());
-  base::ScopedFD fd_stdout(1);
+  dbus::FileDescriptor fd_stdout(1);
   fd_stdout.CheckValidity();
   EXPECT_NE(fd_stdout.value(), EchoFD(fd_stdout).value());
-  base::ScopedFD fd_stderr(2);
+  dbus::FileDescriptor fd_stderr(2);
   fd_stderr.CheckValidity();
   EXPECT_NE(fd_stderr.value(), EchoFD(fd_stderr).value());
 }

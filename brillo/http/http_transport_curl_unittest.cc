@@ -209,8 +209,7 @@ TEST_F(HttpCurlTransportAsyncTest, StartAsyncTransfer) {
                              base::RunLoop* run_loop,
                              RequestID /* request_id */,
                              std::unique_ptr<http::Response> /* resp */) {
-    base::MessageLoop::current()->task_runner()->PostTask(
-        FROM_HERE, run_loop->QuitClosure());
+    base::MessageLoop::current()->PostTask(FROM_HERE, run_loop->QuitClosure());
     (*success_call_count)++;
   };
 
@@ -278,7 +277,7 @@ TEST_F(HttpCurlTransportAsyncTest, StartAsyncTransfer) {
 
   // Just in case something goes wrong and |success_callback| isn't called,
   // post a time-out quit closure to abort the message loop after 1 second.
-  message_loop.task_runner()->PostDelayedTask(
+  message_loop.PostDelayedTask(
       FROM_HERE, run_loop.QuitClosure(), base::TimeDelta::FromSeconds(1));
   run_loop.Run();
   EXPECT_EQ(1, success_call_count);

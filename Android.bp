@@ -165,6 +165,23 @@ cc_library_shared {
     export_include_dirs: ["."],
 }
 
+// Shared minijail library for target
+// ========================================================
+cc_library_shared {
+    name: "libbrillo-minijail",
+    srcs: [
+        "brillo/minijail/minijail.cc",
+    ],
+    shared_libs: [
+        "libchrome",
+        "libbrillo",
+        "libminijail",
+    ],
+    static_libs: ["libgtest_prod"],
+    cflags: libbrillo_CFLAGS,
+    export_include_dirs: ["."],
+}
+
 // Shared and static stream library for target and host
 // ========================================================
 cc_library {

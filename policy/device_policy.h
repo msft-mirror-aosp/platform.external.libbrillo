@@ -156,9 +156,6 @@ class DevicePolicy {
       std::string* app_id_out) const = 0;
 
  private:
-  // Verifies that the policy files are owned by root and exist.
-  virtual bool VerifyPolicyFiles() = 0;
-
   // Verifies that the policy signature is correct.
   virtual bool VerifyPolicySignature() = 0;
 

@@ -11,10 +11,16 @@
 
 #include <brillo/asan.h>
 #include <brillo/brillo_export.h>
+#include <brillo/secure_allocator.h>
 
 namespace brillo {
 
 using Blob = std::vector<uint8_t>;
+// Define SecureVector as a vector using a SecureAllocator.
+// Over time, the goal is to remove the differentiating functions
+// from SecureBlob (to_string(), char_data()) till it converges with
+// SecureVector.
+using SecureVector = std::vector<uint8_t, SecureAllocator<uint8_t>>;
 
 // Conversion of Blob to/from std::string, where the string holds raw byte
 // contents.
@@ -26,10 +32,11 @@ BRILLO_EXPORT Blob CombineBlobs(const std::initializer_list<Blob>& blobs);
 
 // SecureBlob erases the contents on destruction.  It does not guarantee erasure
 // on resize, assign, etc.
-class BRILLO_EXPORT SecureBlob : public Blob {
+class BRILLO_EXPORT SecureBlob : public SecureVector {
  public:
   SecureBlob() = default;
-  using Blob::vector;  // Inherit standard constructors from vector.
+  // Inherit standard constructors from SecureVector.
+  using SecureVector::vector;
   explicit SecureBlob(const Blob& blob);
   explicit SecureBlob(const std::string& data);
   ~SecureBlob();
@@ -68,6 +75,14 @@ BRILLO_EXPORT BRILLO_DISABLE_ASAN void* SecureMemset(void* v, int c, size_t n);
 // 1 if they don't. Time taken to perform the comparison is only dependent on
 // [n] and not on the relationship of the match between [s1] and [s2].
 BRILLO_EXPORT int SecureMemcmp(const void* s1, const void* s2, size_t n);
+
+// Conversion of SecureBlob data to/from SecureBlob hex. This is useful
+// for sensitive data like encryption keys, that should, in the ideal case never
+// be exposed as strings in the first place. In case the existing data or hex
+// string is already exposed as a std::string, it is preferable to use the
+// BlobToString variant.
+BRILLO_EXPORT SecureBlob SecureBlobToSecureHex(const SecureBlob& blob);
+BRILLO_EXPORT SecureBlob SecureHexToSecureBlob(const SecureBlob& hex);
 
 }  // namespace brillo
 

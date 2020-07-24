@@ -87,7 +87,16 @@ void AsynchronousSignalHandler::UpdateSignals() {
   if (!descriptor_.is_valid())
     return;
   sigset_t mask;
+#ifdef __ANDROID__
+  CHECK_EQ(0, sigemptyset(&mask));
+  for (size_t i = 0; i < NSIG; ++i) {
+    if (sigismember(&signal_mask_, i) == 1 || sigismember(&saved_signal_mask_, i) == 1) {
+      CHECK_EQ(0, sigaddset(&mask, i));
+    }
+  }
+#else
   CHECK_EQ(0, sigorset(&mask, &signal_mask_, &saved_signal_mask_));
+#endif
   CHECK_EQ(0, sigprocmask(SIG_SETMASK, &mask, nullptr));
   CHECK_EQ(
       descriptor_.get(),

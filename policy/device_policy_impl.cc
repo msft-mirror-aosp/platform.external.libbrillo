@@ -16,6 +16,7 @@
 #include <base/logging.h>
 #include <base/macros.h>
 #include <base/memory/ptr_util.h>
+#include <base/stl_util.h>
 #include <base/time/time.h>
 #include <base/values.h>
 #include <openssl/evp.h>
@@ -100,7 +101,7 @@ std::string DecodeConnectionType(int type) {
       "ethernet", "wifi", "wimax", "bluetooth", "cellular",
   };
 
-  if (type < 0 || type >= static_cast<int>(arraysize(kConnectionTypes)))
+  if (type < 0 || type >= static_cast<int>(base::size(kConnectionTypes)))
     return std::string();
 
   return kConnectionTypes[type];
@@ -153,10 +154,11 @@ bool DecodeWeeklyTimeFromValue(const base::DictionaryValue& dict_value,
 std::unique_ptr<base::ListValue> DecodeListValueFromJSON(
     const std::string& json_string) {
   std::string error;
+  // TODO(crbug.com/1054279): use base::JSONReader::ReadAndReturnValueWithError
+  // after uprev to r680000.
   std::unique_ptr<base::Value> decoded_json =
-      base::JSONReader::ReadAndReturnError(json_string,
-                                           base::JSON_ALLOW_TRAILING_COMMAS,
-                                           nullptr, &error);
+      base::JSONReader::ReadAndReturnErrorDeprecated(
+          json_string, base::JSON_ALLOW_TRAILING_COMMAS, nullptr, &error);
   if (!decoded_json) {
     LOG(ERROR) << "Invalid JSON string: " << error;
     return nullptr;

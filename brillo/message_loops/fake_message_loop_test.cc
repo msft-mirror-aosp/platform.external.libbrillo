@@ -15,7 +15,7 @@
 
 #include <brillo/message_loops/message_loop.h>
 
-using base::Bind;
+using base::BindOnce;
 using base::Time;
 using base::TimeDelta;
 using std::vector;
@@ -45,17 +45,18 @@ TEST_F(FakeMessageLoopTest, CancelTaskInvalidValuesTest) {
 
 TEST_F(FakeMessageLoopTest, PostDelayedTaskRunsInOrder) {
   vector<int> order;
-  auto callback = [](std::vector<int>* order, int value) {
-    order->push_back(value);
-  };
-  loop_->PostDelayedTask(Bind(callback, base::Unretained(&order), 1),
-                         TimeDelta::FromSeconds(1));
-  loop_->PostDelayedTask(Bind(callback, base::Unretained(&order), 4),
-                         TimeDelta::FromSeconds(4));
-  loop_->PostDelayedTask(Bind(callback, base::Unretained(&order), 3),
-                         TimeDelta::FromSeconds(3));
-  loop_->PostDelayedTask(Bind(callback, base::Unretained(&order), 2),
-                         TimeDelta::FromSeconds(2));
+  loop_->PostDelayedTask(
+      BindOnce([](vector<int>* order) { order->push_back(1); }, &order),
+      TimeDelta::FromSeconds(1));
+  loop_->PostDelayedTask(
+      BindOnce([](vector<int>* order) { order->push_back(4); }, &order),
+      TimeDelta::FromSeconds(4));
+  loop_->PostDelayedTask(
+      BindOnce([](vector<int>* order) { order->push_back(3); }, &order),
+      TimeDelta::FromSeconds(3));
+  loop_->PostDelayedTask(
+      BindOnce([](vector<int>* order) { order->push_back(2); }, &order),
+      TimeDelta::FromSeconds(2));
   // Run until all the tasks are run.
   loop_->Run();
   EXPECT_EQ((vector<int>{1, 2, 3, 4}), order);

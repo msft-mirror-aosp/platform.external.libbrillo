@@ -30,11 +30,10 @@
 #include <base/run_loop.h>
 #include <base/strings/string_number_conversions.h>
 #include <base/strings/string_split.h>
+#include <base/threading/thread_task_runner_handle.h>
 
 #include <brillo/location_logging.h>
 #include <brillo/strings/string_utils.h>
-
-using base::Closure;
 
 namespace {
 
@@ -49,7 +48,7 @@ const int BaseMessageLoop::kInvalidMinor = -1;
 const int BaseMessageLoop::kUninitializedMinor = -2;
 
 BaseMessageLoop::BaseMessageLoop() {
-  CHECK(!base::MessageLoop::current())
+  CHECK(!base::ThreadTaskRunnerHandle::IsSet())
       << "You can't create a base::MessageLoopForIO when another "
          "base::MessageLoop is already created for this thread.";
   owned_base_loop_.reset(new base::MessageLoopForIO());
@@ -80,21 +79,21 @@ BaseMessageLoop::~BaseMessageLoop() {
 
 MessageLoop::TaskId BaseMessageLoop::PostDelayedTask(
     const base::Location& from_here,
-    const Closure &task,
+    base::OnceClosure task,
     base::TimeDelta delay) {
   TaskId task_id =  NextTaskId();
   bool base_scheduled = base_loop_->task_runner()->PostDelayedTask(
       from_here,
-      base::Bind(&BaseMessageLoop::OnRanPostedTask,
-                 weak_ptr_factory_.GetWeakPtr(),
-                 task_id),
+      base::BindOnce(&BaseMessageLoop::OnRanPostedTask,
+                     weak_ptr_factory_.GetWeakPtr(), task_id),
       delay);
   DVLOG_LOC(from_here, 1) << "Scheduling delayed task_id " << task_id
                           << " to run in " << delay << ".";
   if (!base_scheduled)
     return MessageLoop::kTaskIdNull;
 
-  delayed_tasks_.emplace(task_id, DelayedTask{from_here, task_id, task});
+  delayed_tasks_.emplace(task_id,
+                         DelayedTask{from_here, task_id, std::move(task)});
   return task_id;
 }
 
@@ -114,10 +113,10 @@ bool BaseMessageLoop::CancelTask(TaskId task_id) {
 
   DVLOG_LOC(delayed_task_it->second.location, 1)
       << "Removing task_id " << task_id << " scheduled from this location.";
-  // We reset to closure to a null Closure to release all the resources
+  // We reset to closure to a null OnceClosure to release all the resources
   // used by this closure at this point, but we don't remove the task_id from
   // delayed_tasks_ since we can't tell base::MessageLoopForIO to not run it.
-  delayed_task_it->second.closure = Closure();
+  delayed_task_it->second.closure.Reset();
 
   return true;
 }
@@ -154,7 +153,7 @@ void BaseMessageLoop::BreakLoop() {
   base_run_loop_->Quit();
 }
 
-Closure BaseMessageLoop::QuitClosure() const {
+base::RepeatingClosure BaseMessageLoop::QuitClosure() const {
   if (base_run_loop_ == nullptr)
     return base::DoNothing();
   return base_run_loop_->QuitClosure();
@@ -179,9 +178,7 @@ void BaseMessageLoop::OnRanPostedTask(MessageLoop::TaskId task_id) {
         << " scheduled from this location.";
     // Mark the task as canceled while we are running it so CancelTask returns
     // false.
-    Closure closure = std::move(task_it->second.closure);
-    task_it->second.closure = Closure();
-    closure.Run();
+    std::move(task_it->second.closure).Run();
 
     // If the |run_once_| flag is set, it is because we are instructed to run
     // only once callback.

@@ -180,9 +180,7 @@ ServerRequestResponseBase::GetDataAsJson() const {
   if (brillo::mime::RemoveParameters(
           GetHeader(request_header::kContentType)) ==
       brillo::mime::application::kJson) {
-    // TODO(crbug.com/1054279): use base::JSONReader::Read after uprev to
-    // r680000.
-    auto value = base::JSONReader::ReadDeprecated(GetDataAsString());
+    auto value = base::JSONReader::Read(GetDataAsString());
     result = base::DictionaryValue::From(std::move(value));
   }
   return result;

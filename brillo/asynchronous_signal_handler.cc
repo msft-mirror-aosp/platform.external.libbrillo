@@ -11,16 +11,10 @@
 #include <base/bind.h>
 #include <base/files/file_util.h>
 #include <base/logging.h>
-#include <base/posix/eintr_wrapper.h>
-
-namespace {
-const int kInvalidDescriptor = -1;
-}  // namespace
 
 namespace brillo {
 
-AsynchronousSignalHandler::AsynchronousSignalHandler()
-    : descriptor_(kInvalidDescriptor) {
+AsynchronousSignalHandler::AsynchronousSignalHandler() {
   CHECK_EQ(sigemptyset(&signal_mask_), 0) << "Failed to initialize signal mask";
   CHECK_EQ(sigemptyset(&saved_signal_mask_), 0)
       << "Failed to initialize signal mask";
@@ -29,26 +23,29 @@ AsynchronousSignalHandler::AsynchronousSignalHandler()
 AsynchronousSignalHandler::~AsynchronousSignalHandler() {
   fd_watcher_ = nullptr;
 
-  if (descriptor_ == kInvalidDescriptor)
+  if (!descriptor_.is_valid())
     return;
 
-  if (IGNORE_EINTR(close(descriptor_)) != 0)
-    PLOG(WARNING) << "Failed to close file descriptor";
-  descriptor_ = kInvalidDescriptor;
+  // Close FD before restoring sigprocmask.
+  descriptor_.reset();
   CHECK_EQ(0, sigprocmask(SIG_SETMASK, &saved_signal_mask_, nullptr));
 }
 
 void AsynchronousSignalHandler::Init() {
-  CHECK_EQ(kInvalidDescriptor, descriptor_);
+  // Making sure it is not yet initialized.
+  CHECK(!descriptor_.is_valid());
+
+  // Set sigprocmask before creating signalfd.
   CHECK_EQ(0, sigprocmask(SIG_BLOCK, &signal_mask_, &saved_signal_mask_));
-  descriptor_ =
-      signalfd(descriptor_, &signal_mask_, SFD_CLOEXEC | SFD_NONBLOCK);
-  CHECK_NE(kInvalidDescriptor, descriptor_);
+
+  // Creating signalfd, and start watching it.
+  descriptor_.reset(signalfd(-1, &signal_mask_, SFD_CLOEXEC | SFD_NONBLOCK));
+  CHECK(descriptor_.is_valid());
   fd_watcher_ = base::FileDescriptorWatcher::WatchReadable(
-      descriptor_,
+      descriptor_.get(),
       base::BindRepeating(&AsynchronousSignalHandler::OnReadable,
                           base::Unretained(this)));
-  CHECK(fd_watcher_) << "Watching shutdown pipe failed.";
+  CHECK(fd_watcher_) << "Watching signalfd failed.";
 }
 
 void AsynchronousSignalHandler::RegisterHandler(int signal,
@@ -60,15 +57,16 @@ void AsynchronousSignalHandler::RegisterHandler(int signal,
 
 void AsynchronousSignalHandler::UnregisterHandler(int signal) {
   Callbacks::iterator callback_it = registered_callbacks_.find(signal);
-  if (callback_it != registered_callbacks_.end()) {
-    registered_callbacks_.erase(callback_it);
-    ResetSignal(signal);
-  }
+  if (callback_it == registered_callbacks_.end())
+    return;
+  registered_callbacks_.erase(callback_it);
+  CHECK_EQ(0, sigdelset(&signal_mask_, signal));
+  UpdateSignals();
 }
 
 void AsynchronousSignalHandler::OnReadable() {
   struct signalfd_siginfo info;
-  while (base::ReadFromFD(descriptor_,
+  while (base::ReadFromFD(descriptor_.get(),
                           reinterpret_cast<char*>(&info), sizeof(info))) {
     int signal = info.ssi_signo;
     Callbacks::iterator callback_it = registered_callbacks_.find(signal);
@@ -80,24 +78,20 @@ void AsynchronousSignalHandler::OnReadable() {
     }
     const SignalHandler& callback = callback_it->second;
     bool must_unregister = callback.Run(info);
-    if (must_unregister) {
+    if (must_unregister)
       UnregisterHandler(signal);
-    }
   }
-}
-
-void AsynchronousSignalHandler::ResetSignal(int signal) {
-  CHECK_EQ(0, sigdelset(&signal_mask_, signal));
-  UpdateSignals();
 }
 
 void AsynchronousSignalHandler::UpdateSignals() {
-  if (descriptor_ != kInvalidDescriptor) {
-    CHECK_EQ(0, sigprocmask(SIG_SETMASK, &saved_signal_mask_, nullptr));
-    CHECK_EQ(0, sigprocmask(SIG_BLOCK, &signal_mask_, nullptr));
-    CHECK_EQ(descriptor_,
-             signalfd(descriptor_, &signal_mask_, SFD_CLOEXEC | SFD_NONBLOCK));
-  }
+  if (!descriptor_.is_valid())
+    return;
+  sigset_t mask;
+  CHECK_EQ(0, sigorset(&mask, &signal_mask_, &saved_signal_mask_));
+  CHECK_EQ(0, sigprocmask(SIG_SETMASK, &mask, nullptr));
+  CHECK_EQ(
+      descriptor_.get(),
+      signalfd(descriptor_.get(), &signal_mask_, SFD_CLOEXEC | SFD_NONBLOCK));
 }
 
 }  // namespace brillo

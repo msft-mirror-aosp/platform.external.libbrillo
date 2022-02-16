@@ -5,8 +5,6 @@
 #ifndef LIBBRILLO_BRILLO_STREAMS_FILE_STREAM_H_
 #define LIBBRILLO_BRILLO_STREAMS_FILE_STREAM_H_
 
-#include <sys/types.h>
-
 #include <memory>
 
 #include <base/files/file_path.h>

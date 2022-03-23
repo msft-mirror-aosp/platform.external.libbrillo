@@ -1,1 +1,9 @@
-include platform/system/update_engine:/OWNERS
+set noparent
+
+# Android owners
+senj@google.com
+
+# Chromium owners
+vapier@google.com
+ejcaruso@google.com
+hidehiko@google.com

@@ -52,9 +52,4 @@ void OsReleaseReader::Load(const base::FilePath& root_dir) {
   initialized_ = true;
 }
 
-std::vector<std::string> OsReleaseReader::GetKeys() const {
-  CHECK(initialized_) << "OsReleaseReader.Load() must be called first.";
-  return store_.GetKeys();
-}
-
 }  // namespace brillo

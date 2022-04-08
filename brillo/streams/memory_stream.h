@@ -5,9 +5,7 @@
 #ifndef LIBBRILLO_BRILLO_STREAMS_MEMORY_STREAM_H_
 #define LIBBRILLO_BRILLO_STREAMS_MEMORY_STREAM_H_
 
-#include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <base/macros.h>

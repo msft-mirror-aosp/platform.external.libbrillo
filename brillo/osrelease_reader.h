@@ -10,7 +10,6 @@
 #define LIBBRILLO_BRILLO_OSRELEASE_READER_H_
 
 #include <string>
-#include <vector>
 
 #include <brillo/brillo_export.h>
 #include <brillo/key_value_store.h>
@@ -36,9 +35,6 @@ class BRILLO_EXPORT OsReleaseReader final {
 
   // Getter for the given key. Returns whether the key was found on the store.
   bool GetString(const std::string& key, std::string* value) const;
-
-  // Getter for all the keys in /etc/os-release.
-  std::vector<std::string> GetKeys() const;
 
  private:
   // The map storing all the key-value pairs.

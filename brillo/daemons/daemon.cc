@@ -4,7 +4,6 @@
 
 #include <brillo/daemons/daemon.h>
 
-#include <signal.h>
 #include <sysexits.h>
 #include <time.h>
 
@@ -15,7 +14,7 @@
 
 namespace brillo {
 
-Daemon::Daemon() : exit_code_{EX_OK}, exiting_(false) {
+Daemon::Daemon() : exit_code_{EX_OK} {
   message_loop_.SetAsCurrent();
 }
 
@@ -28,7 +27,7 @@ int Daemon::Run() {
     return exit_code;
 
   message_loop_.PostTask(
-      base::BindOnce(&Daemon::OnEventLoopStartedTask, base::Unretained(this)));
+      base::Bind(&Daemon::OnEventLoopStartedTask, base::Unretained(this)));
   message_loop_.Run();
 
   OnShutdown(&exit_code_);
@@ -86,27 +85,15 @@ bool Daemon::OnRestart() {
 }
 
 bool Daemon::Shutdown(const signalfd_siginfo& /* info */) {
-  // Only respond to the first call.
-  if (!exiting_) {
-    exiting_ = true;
-    Quit();
-  }
-  // Always return false, to avoid unregistering the signal handler. We might
-  // receive multiple successive signals, and we don't want to take the default
-  // response (termination) while we're still tearing down.
-  return false;
+  Quit();
+  return true;  // Unregister the signal handler.
 }
 
 bool Daemon::Restart(const signalfd_siginfo& /* info */) {
-  if (!exiting_ && !OnRestart()) {
-    // Only Quit() once.
-    exiting_ = true;
-    Quit();
-  }
-  // Always return false, to avoid unregistering the signal handler. We might
-  // receive multiple successive signals, and we don't want to take the default
-  // response (termination) while we're still tearing down.
-  return false;
+  if (OnRestart())
+    return false;  // Keep listening to the signal.
+  Quit();
+  return true;  // Unregister the signal handler.
 }
 
 void Daemon::OnEventLoopStartedTask() {

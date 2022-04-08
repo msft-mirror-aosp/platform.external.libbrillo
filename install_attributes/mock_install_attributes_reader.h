@@ -5,8 +5,6 @@
 #ifndef LIBBRILLO_INSTALL_ATTRIBUTES_MOCK_INSTALL_ATTRIBUTES_READER_H_
 #define LIBBRILLO_INSTALL_ATTRIBUTES_MOCK_INSTALL_ATTRIBUTES_READER_H_
 
-#include <string>
-
 #include "libinstallattributes.h"
 
 #include "bindings/install_attributes.pb.h"

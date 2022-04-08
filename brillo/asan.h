@@ -17,4 +17,5 @@
 #define BRILLO_DISABLE_ASAN
 #endif
 
-#endif  // LIBBRILLO_BRILLO_ASAN_H_
+#endif
+

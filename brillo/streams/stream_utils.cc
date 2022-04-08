@@ -4,11 +4,7 @@
 
 #include <brillo/streams/stream_utils.h>
 
-#include <algorithm>
 #include <limits>
-#include <memory>
-#include <utility>
-#include <vector>
 
 #include <base/bind.h>
 #include <brillo/message_loops/message_loop.h>
@@ -213,7 +209,7 @@ void CopyData(StreamPtr in_stream,
   state->success_callback = success_callback;
   state->error_callback = error_callback;
   brillo::MessageLoop::current()->PostTask(FROM_HERE,
-                                           base::BindOnce(&PerformRead, state));
+                                             base::Bind(&PerformRead, state));
 }
 
 }  // namespace stream_utils

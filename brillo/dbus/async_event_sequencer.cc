@@ -4,9 +4,6 @@
 
 #include <brillo/dbus/async_event_sequencer.h>
 
-#include <base/bind.h>
-#include <base/callback.h>
-
 namespace brillo {
 
 namespace dbus_utils {

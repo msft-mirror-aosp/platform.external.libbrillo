@@ -7,7 +7,6 @@
 
 #include <string>
 
-#include <base/location.h>
 #include <brillo/brillo_export.h>
 #include <brillo/errors/error.h>
 

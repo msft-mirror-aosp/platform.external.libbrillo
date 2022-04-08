@@ -4,8 +4,6 @@
 
 #include <brillo/http/http_connection_curl.h>
 
-#include <utility>
-
 #include <base/logging.h>
 #include <brillo/http/http_request.h>
 #include <brillo/http/http_transport_curl.h>

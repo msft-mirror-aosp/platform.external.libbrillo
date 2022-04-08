@@ -6,7 +6,6 @@
 #define LIBBRILLO_BRILLO_STREAMS_MEMORY_CONTAINERS_H_
 
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <brillo/brillo_export.h>

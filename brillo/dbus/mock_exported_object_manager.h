@@ -24,17 +24,15 @@ class MockExportedObjectManager : public ExportedObjectManager {
   using ExportedObjectManager::ExportedObjectManager;
   ~MockExportedObjectManager() override = default;
 
-  MOCK_METHOD(void, RegisterAsync, (const CompletionAction&), (override));
-  MOCK_METHOD(void,
-              ClaimInterface,
-              (const ::dbus::ObjectPath&,
-               const std::string&,
-               const ExportedPropertySet::PropertyWriter&),
-              (override));
-  MOCK_METHOD(void,
-              ReleaseInterface,
-              (const ::dbus::ObjectPath&, const std::string&),
-              (override));
+  MOCK_METHOD1(RegisterAsync,
+               void(const CompletionAction& completion_callback));
+  MOCK_METHOD3(ClaimInterface,
+               void(const dbus::ObjectPath& path,
+                    const std::string& interface_name,
+                    const ExportedPropertySet::PropertyWriter& writer));
+  MOCK_METHOD2(ReleaseInterface,
+               void(const dbus::ObjectPath& path,
+                    const std::string& interface_name));
 };
 
 }  // namespace dbus_utils

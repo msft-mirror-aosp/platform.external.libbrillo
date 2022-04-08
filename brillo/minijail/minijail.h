@@ -12,9 +12,6 @@ extern "C" {
 #include <sys/types.h>
 }
 
-#include <base/lazy_instance.h>
-#include <brillo/brillo_export.h>
-
 #include <libminijail.h>
 
 #include "base/macros.h"
@@ -22,7 +19,7 @@ extern "C" {
 namespace brillo {
 
 // A Minijail abstraction allowing Minijail mocking in tests.
-class BRILLO_EXPORT Minijail {
+class Minijail {
  public:
   virtual ~Minijail();
 
@@ -58,12 +55,6 @@ class BRILLO_EXPORT Minijail {
   // minijail_reset_signal_mask
   virtual void ResetSignalMask(struct minijail* jail);
 
-  // minijail_close_open_fds
-  virtual void CloseOpenFds(struct minijail* jail);
-
-  // minijail_preserve_fd
-  virtual void PreserveFd(struct minijail* jail, int parent_fd, int child_fd);
-
   // minijail_enter
   virtual void Enter(struct minijail* jail);
 
@@ -89,14 +80,6 @@ class BRILLO_EXPORT Minijail {
                         int* stdout,
                         int* stderr);
 
-  // minijail_run_env_pid_pipes
-  virtual bool RunEnvPipes(struct minijail* jail,
-                           std::vector<char*> args,
-                           std::vector<char*> env,
-                           pid_t* pid,
-                           int* stdin,
-                           int* stdout,
-                           int* stderr);
   // Run() and Destroy()
   virtual bool RunAndDestroy(struct minijail* jail,
                              std::vector<char*> args,
@@ -121,21 +104,10 @@ class BRILLO_EXPORT Minijail {
                                   int* stdout,
                                   int* stderr);
 
-  // RunEnvPipes() and Destroy()
-  virtual bool RunEnvPipesAndDestroy(struct minijail* jail,
-                                     std::vector<char*> args,
-                                     std::vector<char*> env,
-                                     pid_t* pid,
-                                     int* stdin,
-                                     int* stdout,
-                                     int* stderr);
-
  protected:
   Minijail();
 
  private:
-  friend base::LazyInstanceTraitsBase<Minijail>;
-
   DISALLOW_COPY_AND_ASSIGN(Minijail);
 };
 

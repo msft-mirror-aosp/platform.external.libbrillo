@@ -232,14 +232,13 @@ TEST_F(SecureBlobTest, HexStringToSecureBlob) {
 template <typename T>
 class TestSecureAllocator : public SecureAllocator<T> {
  public:
-  using typename SecureAllocator<T>::pointer;
   using typename SecureAllocator<T>::size_type;
   using typename SecureAllocator<T>::value_type;
 
   int GetErasedCount() { return erased_count; }
 
  protected:
-  void clear_contents(pointer p, size_type n) override {
+  void clear_contents(value_type* p, size_type n) override {
     SecureAllocator<T>::clear_contents(p, n);
     unsigned char *v = reinterpret_cast<unsigned char*>(p);
     for (int i = 0; i < n; i++) {
@@ -255,9 +254,10 @@ class TestSecureAllocator : public SecureAllocator<T> {
 TEST(SecureAllocator, ErasureOnDeallocation) {
   // Make sure that the contents are cleared on deallocation.
   TestSecureAllocator<char> e;
+  constexpr size_t test_string_sz = 15;
 
-  char *test_string_addr = e.allocate(15);
-  snprintf(test_string_addr, sizeof(test_string_addr), "Test String");
+  char *test_string_addr = e.allocate(test_string_sz);
+  snprintf(test_string_addr, test_string_sz, "Test String");
 
   // Deallocate memory; the mock class should check for cleared data.
   e.deallocate(test_string_addr, 15);
